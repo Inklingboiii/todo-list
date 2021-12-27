@@ -12,6 +12,10 @@
         display: flex;
         justify-content: space-around;
         padding:1em;
-        background: var(--color-primary);
+        background: black;
+    }
+
+    :global(nav a) {
+        color: white;
     }
 </style>

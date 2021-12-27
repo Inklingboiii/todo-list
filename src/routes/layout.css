@@ -7,9 +7,9 @@
     body {
         margin: 0;
         line-height: 1.6;
+        font-family: 'Montserrat', sans-serif;
     }
 
     :root {
-        --color-primary: #50dd8b;
-        --color-secondary: #dd505b;
+        --color-primary: #dd505b;
     }
