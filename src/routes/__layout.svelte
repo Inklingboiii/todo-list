@@ -1,6 +1,6 @@
 <script>
     import Nav from '$lib/Nav.svelte';
-    import './layout.css';
+    import '../global.css';
 </script>
 <Nav />
 <slot></slot>
