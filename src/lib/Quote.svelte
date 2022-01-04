@@ -1,14 +1,16 @@
 <script context="module">
     // Fetch quote
+    // TODO: Fetch multiple quotes at once and cache them externally as described here: https://premium.zenquotes.io/zenquotes-documentation/#call-quotes
     /** @type {import('@sveltejs/kit').Load} */
-    export async function loadQuotes({fetch}) {
-        const api_url = 'https://zenquotes.io/api/quotes/';
+    export async function loadQuote({fetch}) {
+        const api_url = 'https://zenquotes.io/api/random';
         const result = await fetch(api_url);
+        const quotes = await result.json();
 
         if(result.ok) {
             return {
                 props: {
-                    quotes: await result.json()
+                    quote: quotes[0]
                 }
             }
         }
@@ -20,7 +22,14 @@
     }
 </script>
 <script>
-    export let quotes;
+    export let quote;
 </script>
 
-{@html quotes[0].h}
+<figure>
+    <blockquote>
+        {quote.q}
+    </blockquote>
+    <figcaption>
+        {quote.a}
+    </figcaption>
+</figure>

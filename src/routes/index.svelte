@@ -1,12 +1,12 @@
 <script>
     import MainHeading from '$lib/MainHeading.svelte';
-    import Quote, {loadQuotes} from '$lib/Quote.svelte';
-    export let quotes;
+    import Quote, {loadQuote} from '$lib/Quote.svelte';
+    export let quote;
 </script>
 <script context="module">
-   export const load = loadQuotes;
+   export const load = loadQuote;
 </script>
 <header>
     <MainHeading>Generic todo-list</MainHeading>
-    <Quote quotes={quotes}/>
+    <Quote quote={quote}/>
 </header>
