@@ -7,6 +7,6 @@
    export const load = loadQuote;
 </script>
 <header>
-    <MainHeading>Generic todo-list</MainHeading>
+    <MainHeading>Generic to-do list</MainHeading>
     <Quote quote={quote}/>
 </header>

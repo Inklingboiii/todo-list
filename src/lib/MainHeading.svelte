@@ -6,5 +6,6 @@
     h1 {
         text-align: center;
         color: var(--color-primary);
+        font-size: var(--font-h1);
     }
 </style>
