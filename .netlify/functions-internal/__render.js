@@ -5,8 +5,8 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+var __esm = (fn, res2) => function __init() {
+  return fn && (res2 = (0, fn[Object.keys(fn)[0]])(fn = 0)), res2;
 };
 var __export = (target, all) => {
   __markAsModule(target);
@@ -535,22 +535,22 @@ function fromRawHeaders(headers = []) {
     }
   }));
 }
-function stripURLForUseAsAReferrer(url, originOnly = false) {
-  if (url == null) {
+function stripURLForUseAsAReferrer(url2, originOnly = false) {
+  if (url2 == null) {
     return "no-referrer";
   }
-  url = new URL(url);
-  if (/^(about|blob|data):$/.test(url.protocol)) {
+  url2 = new URL(url2);
+  if (/^(about|blob|data):$/.test(url2.protocol)) {
     return "no-referrer";
   }
-  url.username = "";
-  url.password = "";
-  url.hash = "";
+  url2.username = "";
+  url2.password = "";
+  url2.hash = "";
   if (originOnly) {
-    url.pathname = "";
-    url.search = "";
+    url2.pathname = "";
+    url2.search = "";
   }
-  return url;
+  return url2;
 }
 function validateReferrerPolicy(referrerPolicy) {
   if (!ReferrerPolicy.has(referrerPolicy)) {
@@ -558,11 +558,11 @@ function validateReferrerPolicy(referrerPolicy) {
   }
   return referrerPolicy;
 }
-function isOriginPotentiallyTrustworthy(url) {
-  if (/^(http|ws)s:$/.test(url.protocol)) {
+function isOriginPotentiallyTrustworthy(url2) {
+  if (/^(http|ws)s:$/.test(url2.protocol)) {
     return true;
   }
-  const hostIp = url.host.replace(/(^\[)|(]$)/g, "");
+  const hostIp = url2.host.replace(/(^\[)|(]$)/g, "");
   const hostIPVersion = (0, import_net2.isIP)(hostIp);
   if (hostIPVersion === 4 && /^127\./.test(hostIp)) {
     return true;
@@ -570,25 +570,25 @@ function isOriginPotentiallyTrustworthy(url) {
   if (hostIPVersion === 6 && /^(((0+:){7})|(::(0+:){0,6}))0*1$/.test(hostIp)) {
     return true;
   }
-  if (/^(.+\.)*localhost$/.test(url.host)) {
+  if (/^(.+\.)*localhost$/.test(url2.host)) {
     return false;
   }
-  if (url.protocol === "file:") {
+  if (url2.protocol === "file:") {
     return true;
   }
   return false;
 }
-function isUrlPotentiallyTrustworthy(url) {
-  if (/^about:(blank|srcdoc)$/.test(url)) {
+function isUrlPotentiallyTrustworthy(url2) {
+  if (/^about:(blank|srcdoc)$/.test(url2)) {
     return true;
   }
-  if (url.protocol === "data:") {
+  if (url2.protocol === "data:") {
     return true;
   }
-  if (/^(blob|filesystem):$/.test(url.protocol)) {
+  if (/^(blob|filesystem):$/.test(url2.protocol)) {
     return true;
   }
-  return isOriginPotentiallyTrustworthy(url);
+  return isOriginPotentiallyTrustworthy(url2);
 }
 function determineRequestsReferrer(request, { referrerURLCallback, referrerOriginCallback } = {}) {
   if (request.referrer === "no-referrer" || request.referrerPolicy === "") {
@@ -660,12 +660,12 @@ function parseReferrerPolicyFromHeader(headers) {
   }
   return policy;
 }
-async function fetch(url, options_) {
+async function fetch(url2, options_) {
   return new Promise((resolve2, reject) => {
-    const request = new Request(url, options_);
+    const request = new Request(url2, options_);
     const { parsedURL, options: options2 } = getNodeRequestOptions(request);
     if (!supportedSchemas.has(parsedURL.protocol)) {
-      throw new TypeError(`node-fetch cannot load ${url}. URL scheme "${parsedURL.protocol.replace(/:$/, "")}" is not supported.`);
+      throw new TypeError(`node-fetch cannot load ${url2}. URL scheme "${parsedURL.protocol.replace(/:$/, "")}" is not supported.`);
     }
     if (parsedURL.protocol === "data:") {
       const data = dataUriToBuffer(request.url);
@@ -5133,13 +5133,13 @@ var init_install_fetch = __esm({
           highWaterMark: this.highWaterMark
         });
       }
-      static redirect(url, status = 302) {
+      static redirect(url2, status = 302) {
         if (!isRedirect(status)) {
           throw new RangeError('Failed to execute "redirect" on "response": Invalid status code');
         }
         return new Response(null, {
           headers: {
-            location: new URL(url).toString()
+            location: new URL(url2).toString()
           },
           status
         });
@@ -5793,9 +5793,9 @@ async function render_response({
   if (page_config.ssr) {
     branch.forEach(({ node, loaded, fetched, uses_credentials }) => {
       if (node.css)
-        node.css.forEach((url) => css4.add(url));
+        node.css.forEach((url2) => css4.add(url2));
       if (node.js)
-        node.js.forEach((url) => js.add(url));
+        node.js.forEach((url2) => js.add(url2));
       if (node.styles)
         node.styles.forEach((content) => styles.add(content));
       if (fetched && page_config.hydrate)
@@ -5893,8 +5893,8 @@ async function render_response({
   ].join("\n\n		");
   const body = options2.amp ? rendered.html : `${rendered.html}
 
-			${serialized_data.map(({ url, body: body2, json }) => {
-    let attributes = `type="application/json" data-type="svelte-data" data-url=${escape_html_attr(url)}`;
+			${serialized_data.map(({ url: url2, body: body2, json }) => {
+    let attributes = `type="application/json" data-type="svelte-data" data-url=${escape_html_attr(url2)}`;
     if (body2)
       attributes += ` data-body="${hash(body2)}"`;
     return `<script ${attributes}>${json}<\/script>`;
@@ -6015,11 +6015,11 @@ async function load_node({
         return $session;
       },
       fetch: async (resource, opts = {}) => {
-        let url;
+        let url2;
         if (typeof resource === "string") {
-          url = resource;
+          url2 = resource;
         } else {
-          url = resource.url;
+          url2 = resource.url;
           opts = {
             method: resource.method,
             headers: resource.headers,
@@ -6033,7 +6033,7 @@ async function load_node({
             ...opts
           };
         }
-        const resolved = resolve(request.path, url.split("?")[0]);
+        const resolved = resolve(request.path, url2.split("?")[0]);
         let response;
         const prefix = options2.paths.assets || options2.paths.base;
         const filename = (resolved.startsWith(prefix) ? resolved.slice(prefix.length) : resolved).slice(1);
@@ -6058,7 +6058,7 @@ async function load_node({
           if (opts.body && typeof opts.body !== "string") {
             throw new Error("Request body must be a string");
           }
-          const search = url.includes("?") ? url.slice(url.indexOf("?") + 1) : "";
+          const search = url2.includes("?") ? url2.slice(url2.indexOf("?") + 1) : "";
           const rendered = await respond({
             host: request.host,
             method: opts.method || "GET",
@@ -6067,7 +6067,7 @@ async function load_node({
             rawBody: opts.body == null ? null : new TextEncoder().encode(opts.body),
             query: new URLSearchParams(search)
           }, options2, {
-            fetched: url,
+            fetched: url2,
             initiator: route
           });
           if (rendered) {
@@ -6081,10 +6081,10 @@ async function load_node({
           }
         } else {
           if (resolved.startsWith("//")) {
-            throw new Error(`Cannot request protocol-relative URL (${url}) in server-side fetch`);
+            throw new Error(`Cannot request protocol-relative URL (${url2}) in server-side fetch`);
           }
           if (typeof request.host !== "undefined") {
-            const { hostname: fetch_hostname } = new URL(url);
+            const { hostname: fetch_hostname } = new URL(url2);
             const [server_hostname] = request.host.split(":");
             if (`.${fetch_hostname}`.endsWith(`.${server_hostname}`) && opts.credentials !== "omit") {
               uses_credentials = true;
@@ -6094,7 +6094,7 @@ async function load_node({
               };
             }
           }
-          const external_request = new Request(url, opts);
+          const external_request = new Request(url2, opts);
           response = await options2.hooks.externalFetch.call(null, external_request);
         }
         if (response) {
@@ -6112,7 +6112,7 @@ async function load_node({
                 }
                 if (!opts.body || typeof opts.body === "string") {
                   fetched.push({
-                    url,
+                    url: url2,
                     body: opts.body,
                     json: `{"status":${response2.status},"statusText":${s2(response2.statusText)},"headers":${s2(headers)},"body":"${escape_json_string_in_html(body)}"}`
                   });
@@ -6673,16 +6673,42 @@ var init_ssr = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/__layout-f653549c.js
-var layout_f653549c_exports = {};
-__export(layout_f653549c_exports, {
+// .svelte-kit/output/server/chunks/quote.json-3b70ff79.js
+var quote_json_3b70ff79_exports = {};
+__export(quote_json_3b70ff79_exports, {
+  get: () => get
+});
+async function get() {
+  console.log("executed");
+  const api_url = "https://zenquotes.io/api/random";
+  const result = await fetch(api_url);
+  const quotes = await result.json();
+  if (result.ok) {
+    return {
+      body: quotes[0]
+    };
+  }
+  return {
+    status: res.status,
+    error: new Error(`Could not load ${url}`)
+  };
+}
+var init_quote_json_3b70ff79 = __esm({
+  ".svelte-kit/output/server/chunks/quote.json-3b70ff79.js"() {
+    init_shims();
+  }
+});
+
+// .svelte-kit/output/server/chunks/__layout-662434e2.js
+var layout_662434e2_exports = {};
+__export(layout_662434e2_exports, {
   default: () => _layout
 });
 var css$1, Link, css, Nav, _layout;
-var init_layout_f653549c = __esm({
-  ".svelte-kit/output/server/chunks/__layout-f653549c.js"() {
+var init_layout_662434e2 = __esm({
+  ".svelte-kit/output/server/chunks/__layout-662434e2.js"() {
     init_shims();
-    init_app_6f693aeb();
+    init_app_2e14d021();
     init_ssr();
     css$1 = {
       code: "a.svelte-o65hjm{text-decoration:none;background:linear-gradient(currentColor, currentColor);background-repeat:no-repeat;background-position:bottom left;background-size:0% 0%;transition:background-size 0.35s ease-in-out}a.svelte-o65hjm:is(:hover, :focus){background-size:100% 0.15em}",
@@ -6714,9 +6740,9 @@ ${slots.default ? slots.default({}) : ``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/error-9349e344.js
-var error_9349e344_exports = {};
-__export(error_9349e344_exports, {
+// .svelte-kit/output/server/chunks/error-285f1c07.js
+var error_285f1c07_exports = {};
+__export(error_285f1c07_exports, {
   default: () => Error2,
   load: () => load
 });
@@ -6724,10 +6750,10 @@ function load({ error: error2, status }) {
   return { props: { error: error2, status } };
 }
 var Error2;
-var init_error_9349e344 = __esm({
-  ".svelte-kit/output/server/chunks/error-9349e344.js"() {
+var init_error_285f1c07 = __esm({
+  ".svelte-kit/output/server/chunks/error-285f1c07.js"() {
     init_shims();
-    init_app_6f693aeb();
+    init_app_2e14d021();
     init_ssr();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
@@ -6748,50 +6774,56 @@ ${error2.stack ? `<pre>${escape2(error2.stack)}</pre>` : ``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/index-af0db90d.js
-var index_af0db90d_exports = {};
-__export(index_af0db90d_exports, {
-  default: () => Routes
+// .svelte-kit/output/server/chunks/index-b330c9d8.js
+var index_b330c9d8_exports = {};
+__export(index_b330c9d8_exports, {
+  default: () => Routes,
+  load: () => load2
 });
-async function getQuotes(url) {
-  const result = await fetch(url, {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  });
-  const data = await result.json();
-  console.log(JSON.parse(JSON.stringify(data)));
-  return data;
+async function load2({ fetch: fetch2 }) {
+  const result = await fetch2("./quote.json");
+  const quote = await result.json();
+  return { props: { quote } };
 }
-var css2, MainHeading, api_url, Quote, Routes;
-var init_index_af0db90d = __esm({
-  ".svelte-kit/output/server/chunks/index-af0db90d.js"() {
+var css$12, MainHeading, css2, Quote, Routes;
+var init_index_b330c9d8 = __esm({
+  ".svelte-kit/output/server/chunks/index-b330c9d8.js"() {
     init_shims();
-    init_app_6f693aeb();
+    init_app_2e14d021();
     init_ssr();
-    css2 = {
-      code: "h1.svelte-1lec1yf{text-align:center;color:var(--color-primary)}",
+    css$12 = {
+      code: "h1.svelte-rfwf1a{text-align:center;color:var(--color-primary);font-size:var(--font-h1)}",
       map: null
     };
     MainHeading = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css2);
-      return `<h1 class="${"svelte-1lec1yf"}">${slots.default ? slots.default({}) : ``}
+      $$result.css.add(css$12);
+      return `<h1 class="${"svelte-rfwf1a"}">${slots.default ? slots.default({}) : ``}
 </h1>`;
     });
-    api_url = "https://zenquotes.io/api/quotes/";
+    css2 = {
+      code: ".svelte-dx75rb{text-align:center}blockquote.svelte-dx75rb{font-size:var(--font-500)}blockquote.svelte-dx75rb::before,blockquote.svelte-dx75rb::after{font-size:1em;color:var(--color-primary);position:absolute;transform:scale(3);opacity:0.8}blockquote.svelte-dx75rb::before{content:open-quote}blockquote.svelte-dx75rb::after{content:close-quote}figcaption.svelte-dx75rb{font-size:var(--font-450);opacity:0.75}figcaption.svelte-dx75rb::before{content:'\\2014 \\00A0'}",
+      map: null
+    };
     Quote = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let quotes = [];
-      quotes = getQuotes(api_url);
-      console.log(quotes);
-      return `${escape2(quotes[0].h)}`;
+      let { quote } = $$props;
+      if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0)
+        $$bindings.quote(quote);
+      $$result.css.add(css2);
+      return `<figure class="${"svelte-dx75rb"}"><blockquote class="${"svelte-dx75rb"}">${escape2(quote.q)}</blockquote>
+    <figcaption class="${"svelte-dx75rb"}">${escape2(quote.a)}</figcaption>
+</figure>`;
     });
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `<header>${validate_component(MainHeading, "MainHeading").$$render($$result, {}, {}, { default: () => `Generic todo-list` })}
-    ${validate_component(Quote, "Quote").$$render($$result, {}, {}, {})}</header>`;
+      let { quote } = $$props;
+      if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0)
+        $$bindings.quote(quote);
+      return `<header>${validate_component(MainHeading, "MainHeading").$$render($$result, {}, {}, { default: () => `Generic to-do list` })}
+    ${validate_component(Quote, "Quote").$$render($$result, { quote }, {}, {})}</header>`;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/app-6f693aeb.js
+// .svelte-kit/output/server/chunks/app-2e14d021.js
 function run(fn) {
   return fn();
 }
@@ -6878,9 +6910,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-7f041f11.js",
+      file: assets + "/_app/start-8183d9ae.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-7f041f11.js", assets + "/_app/chunks/vendor-89cc92cc.js"]
+      js: [assets + "/_app/start-8183d9ae.js", assets + "/_app/chunks/vendor-89cc92cc.js"]
     },
     fetched: void 0,
     floc: false,
@@ -6924,8 +6956,8 @@ function render(request, {
   return respond({ ...request, host }, options, { prerender });
 }
 var current_component, escaped2, missing_component, on_destroy, css3, Root, base, assets, user_hooks, template, options, default_settings, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_6f693aeb = __esm({
-  ".svelte-kit/output/server/chunks/app-6f693aeb.js"() {
+var init_app_2e14d021 = __esm({
+  ".svelte-kit/output/server/chunks/app-2e14d021.js"() {
     init_shims();
     init_ssr();
     Promise.resolve();
@@ -7000,6 +7032,12 @@ ${``}`;
           params: empty,
           a: ["src/routes/__layout.svelte", "src/routes/index.svelte"],
           b: [".svelte-kit/build/components/error.svelte"]
+        },
+        {
+          type: "endpoint",
+          pattern: /^\/quote\.json$/,
+          params: empty,
+          load: () => Promise.resolve().then(() => (init_quote_json_3b70ff79(), quote_json_3b70ff79_exports))
         }
       ]
     };
@@ -7010,11 +7048,11 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_f653549c(), layout_f653549c_exports)),
-      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_9349e344(), error_9349e344_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_af0db90d(), index_af0db90d_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_662434e2(), layout_662434e2_exports)),
+      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_285f1c07(), error_285f1c07_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_b330c9d8(), index_b330c9d8_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-26b64df3.js", "css": ["assets/pages/__layout.svelte-4780ce15.css"], "js": ["pages/__layout.svelte-26b64df3.js", "chunks/vendor-89cc92cc.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-1693684d.js", "css": [], "js": ["error.svelte-1693684d.js", "chunks/vendor-89cc92cc.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-b162c666.js", "css": ["assets/pages/index.svelte-e770e589.css"], "js": ["pages/index.svelte-b162c666.js", "chunks/vendor-89cc92cc.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-26b64df3.js", "css": ["assets/pages/__layout.svelte-82aa1390.css"], "js": ["pages/__layout.svelte-26b64df3.js", "chunks/vendor-89cc92cc.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-1693684d.js", "css": [], "js": ["error.svelte-1693684d.js", "chunks/vendor-89cc92cc.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-1f5783bb.js", "css": ["assets/pages/index.svelte-3c40bca3.css"], "js": ["pages/index.svelte-1f5783bb.js", "chunks/vendor-89cc92cc.js"], "styles": [] } };
   }
 });
 
@@ -7027,7 +7065,7 @@ init_shims();
 // .svelte-kit/output/server/app.js
 init_shims();
 init_ssr();
-init_app_6f693aeb();
+init_app_2e14d021();
 
 // .svelte-kit/netlify/entry.js
 init();
