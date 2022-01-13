@@ -1,6 +1,7 @@
 <script>
     import MainHeading from '$lib/MainHeading.svelte';
     import Quote from '$lib/Quote.svelte';
+    import TodosCard from '$lib/TodosCard.svelte';
     export let quote;
 </script>
 <script context="module">
@@ -21,5 +22,6 @@
 </script>
 <header>
     <MainHeading>Generic to-do list</MainHeading>
-    <Quote quote={quote}/>
+    <Quote quote={quote} />
+    <TodosCard />
 </header>
