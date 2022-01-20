@@ -9,7 +9,7 @@ export async function get() {
     }
 
     return {
-        status: res.status,
-        error: new Error(`Could not load ${url}`)
+        status: result.status,
+        error: new Error(`Could not load ${api_url}`)
     };
 }

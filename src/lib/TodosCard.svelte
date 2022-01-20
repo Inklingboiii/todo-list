@@ -2,11 +2,15 @@
 	import todos from '$lib/todosStore';
 	$: dailyTodos = $todos.filter((todo) => todo.today);
 </script>
-
-{#if dailyTodos.length > 0}
-	{#each dailyTodos as dailyTodo}
-		<p>{dailyTodo.text}</p>
-	{/each}
-{:else}
-	No todos.
-{/if}
+<article>
+	{#if dailyTodos.length}
+		<ul>
+		{#each dailyTodos as dailyTodo}
+			<li>{dailyTodo.text}</li>
+		{/each}
+		</ul>
+	{:else}
+		<p>No todos added</p>
+	{/if}
+	<a href="#">Add {dailyTodos.length ? 'more' : ''} todos</a>
+</article>
