@@ -1,28 +1,39 @@
 *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        line-height: 1.6;
-        font-family: 'Montserrat', sans-serif;
-        font-size: var(--font-400);
-    }
+body {
+    margin: 0;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--font-400);
+}
 
-    :root {
-        /* Colors */ 
-        --color-primary: #dd505b;
-        --color-accent: #50ddd2;
+:root {
+    /* Colors */ 
+    --color-primary: #dd505b;
+    --color-accent: #50ddd2;
 
-        /* Font sizes */
-        --font-h1: clamp(2rem, 2rem + 2vw, 6rem);
-        --font-400: 1rem;
-        --font-450: 1.25rem;
-        --font-500: 1.5rem;
-    }
+    /* Font sizes */
+    --font-h1: clamp(2rem, 2rem + 2vw, 6rem);
+    --font-400: 1rem;
+    --font-450: 1.25rem;
+    --font-500: 1.5rem;
+}
 
-    p {
-        max-width: 75ch;
-    }
+p {
+    max-width: 75ch;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
