@@ -1,5 +1,5 @@
 <script>
-	import {todosStore} from '$lib/todosStores';
+	import { todosStore } from '$lib/todosStores';
 	$: dailyTodos = $todosStore.filter((todo) => todo.today);
 	import DailyTodo from '$lib/DailyTodo.svelte';
 	import CallToAction from '$lib/CallToAction.svelte';
