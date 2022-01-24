@@ -1,6 +1,6 @@
 <script>
-	import todos from '$lib/todosStore';
-	$: dailyTodos = $todos.filter((todo) => todo.today);
+	import {todosStore} from '$lib/todosStores';
+	$: dailyTodos = $todosStore.filter((todo) => todo.today);
 </script>
 <article>
 	{#if dailyTodos.length}
