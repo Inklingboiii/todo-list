@@ -1,16 +1,30 @@
 <script>
 	import {todosStore} from '$lib/todosStores';
 	$: dailyTodos = $todosStore.filter((todo) => todo.today);
+	import DailyTodo from '$lib/DailyTodo.svelte';
+	import CallToAction from '$lib/CallToAction.svelte';
 </script>
 <article>
+	<h2>Daily todos</h2>
 	{#if dailyTodos.length}
 		<ul>
 		{#each dailyTodos as dailyTodo}
-			<li>{dailyTodo.text}</li>
+			<DailyTodo todo={dailyTodo} />
 		{/each}
 		</ul>
 	{:else}
 		<p>No todos added</p>
 	{/if}
-	<a href="#">Add {dailyTodos.length ? 'more' : ''} todos</a>
+	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} todos</CallToAction>
 </article>
+
+<style>
+	article {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		align-items: center;
+		background-color: black;
+		color: white;
+	}
+</style>

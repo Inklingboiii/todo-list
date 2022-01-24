@@ -23,5 +23,7 @@
 <header>
     <MainHeading>Generic to-do list</MainHeading>
     <Quote quote={quote} />
-    <TodosCard />
 </header>
+<main>
+    <TodosCard />
+</main>
