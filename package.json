@@ -5,7 +5,7 @@
     "dev": "svelte-kit dev -o -p 42069",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
+    "preview": "svelte-kit preview -o",
     "lint": "eslint --ignore-path .gitignore ."
   },
   "devDependencies": {
