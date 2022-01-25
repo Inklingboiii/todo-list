@@ -11,6 +11,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-netlify": "^1.0.0-next.43",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.39",
     "@sveltejs/kit": "next",
     "eslint": "^7.32.0",
     "eslint-plugin-svelte3": "^3.4.0",
