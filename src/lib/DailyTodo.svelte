@@ -1,14 +1,28 @@
 <script>
     export let todo;
     import { onMount } from 'svelte';
+    import { todosStore, inactiveTodosStore } from '$lib/todosStores';
     import KebabMenu from '$lib/KebabMenu.svelte';
     let currentTime = new Date();
     $: remainingTimeInMs = Math.abs(todo.deadline - currentTime);
     $: remainingTime = humanReadableDuration(remainingTimeInMs);
 
     onMount(() => {
-        setInterval(() => {
-            currentTime = new Date()
+        let deadlineInterval = setInterval(() => {
+            currentTime = new Date();
+            // Check if todo expired
+            if(todo.deadline <= currentTime) {
+                clearInterval(deadlineInterval);
+                // Move todo to inactivetodo store
+                $todosStore = $todosStore.filter((storeTodo) => {
+		            if(storeTodo.id === todo.id) true
+	            });
+                $todosStore.forEach((todo, index) => {
+                    todo.id = index;
+                });
+
+                $inactiveTodosStore.push({succeeded: false, ...todo});
+            }
         }, 1000)
     })
 
