@@ -8,9 +8,9 @@
 	<h2>Daily todos</h2>
 	{#if dailyTodos.length}
 		<ul>
-		{#each dailyTodos as dailyTodo}
-			<DailyTodo todo={dailyTodo} />
-		{/each}
+			{#each dailyTodos as dailyTodo}
+				<DailyTodo todo={dailyTodo} />
+			{/each}
 		</ul>
 	{:else}
 		<p>No todos added</p>
@@ -24,7 +24,13 @@
 		flex-direction: column;
 		gap: 1em;
 		align-items: center;
+		width: 90%;
+		margin: auto;
 		background-color: black;
 		color: white;
+	}
+
+	ul {
+		align-self: stretch;
 	}
 </style>

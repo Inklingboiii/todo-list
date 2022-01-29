@@ -1,6 +1,7 @@
 <script>
     export let todo;
     import { onMount } from 'svelte';
+    import KebabMenu from '$lib/KebabMenu.svelte';
     let currentTime = new Date();
     $: remainingTimeInMs = Math.abs(todo.deadline - currentTime);
     $: remainingTime = humanReadableDuration(remainingTimeInMs);
@@ -28,13 +29,20 @@
 
 <li>
     <label>
-        <p>{todo.text}</p>
         <input type="checkbox">
+        <p>{todo.text}</p>
     </label>
-    <p>deadline: {remainingTime}</p>
+    <time>{remainingTime}</time>
+    <KebabMenu />
 </li>
 
 <style>
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
     label {
         display: flex;
     }
