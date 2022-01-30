@@ -13,7 +13,10 @@ type InactiveTodos = Todos & Array<{
 	
 
 // Using test data for now, will fetch actual data later
-const todos: Todos = [{text: 'example test', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 10)), id: 0}];
+const todos: Todos = [
+	{text: 'example test', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 10)), id: 0},
+	{text: 'example test 2', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 120)), id: 1}
+];
 const inactiveTodos: InactiveTodos = [{text: 'missed todo', today: true, deadline: new Date(), succeeded: false, id: 0}];
 
 const todosStore = writable(todos);

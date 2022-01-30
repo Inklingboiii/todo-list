@@ -12,15 +12,15 @@
             currentTime = new Date();
             // Check if todo expired
             if(todo.deadline <= currentTime) {
+
                 clearInterval(deadlineInterval);
                 // Move todo to inactivetodo store
-                $todosStore = $todosStore.filter((storeTodo) => {
-		            if(storeTodo.id === todo.id) true
-	            });
-                $todosStore.forEach((todo, index) => {
-                    todo.id = index;
+                $todosStore = $todosStore.filter((storeTodo) => storeTodo.id !== todo.id);
+                // Reselect the ids
+                $todosStore.forEach((storeTodo, index) => {
+                    storeTodo.id = index;
                 });
-
+                todo.id = $inactiveTodosStore.length;
                 $inactiveTodosStore.push({succeeded: false, ...todo});
             }
         }, 1000)
