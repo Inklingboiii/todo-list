@@ -14,7 +14,7 @@ type InactiveTodos = Todos & Array<{
 
 // Using test data for now, will fetch actual data later
 const todos: Todos = [
-	{text: 'example test', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 10)), id: 0},
+	{text: 'example test', today: true, deadline: new Date(new Date().setHours(new Date().getHours() + 2)), id: 0},
 	{text: 'example test 2', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 120)), id: 1}
 ];
 const inactiveTodos: InactiveTodos = [{text: 'missed todo', today: true, deadline: new Date(), succeeded: false, id: 0}];
@@ -29,15 +29,16 @@ inactiveTodosStore.subscribe((inactiveTodos) => {
 });
 
 function expireTodo(todo: Todos[0], succeeded: boolean) {
-	console.log('B')
+	console.log('B', todo.text)
 	 // Move todo to inactivetodo store
 	 todosStore.update((todos) => todos.filter((storeTodo) => storeTodo.id !== todo.id));
 	 // Reselect the ids
-	 console.log('unided', [...get(todosStore)])
+	 console.log('todosstore unided', [...get(todosStore)])
 	 todosStore.update((storeTodos) => storeTodos.map((todo, index) => ({...todo, id: index})));
-	 console.log('ided', [...get(todosStore)])
+	 console.log('todosstore ided', [...get(todosStore)])
 	 todo.id = get(inactiveTodosStore).length;
 	 inactiveTodosStore.update((storeTodos) => [...storeTodos, {...todo, succeeded: succeeded}]);
+	 console.log('inactivetodosstore', [...get(inactiveTodosStore)])
 }
 
 export { todosStore, inactiveTodosStore, expireTodo };

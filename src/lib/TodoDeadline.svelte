@@ -3,6 +3,7 @@
     import { onMount } from 'svelte';
     import { expireTodo } from '$lib/todosStores';
     let currentTime = new Date();
+    const lateLimit = 1000 * 60 * 60; // 1 hour
     $: remainingTimeInMs = Math.abs(todo.deadline - currentTime);
     $: remainingTime = humanReadableDuration(remainingTimeInMs);
 
@@ -33,4 +34,11 @@
     }
 </script>
 
-<time>{remainingTime}</time>
+
+<time class:late={remainingTimeInMs < lateLimit}>{remainingTime}</time>
+
+<style>
+    .late {
+        color: var(--color-primary);
+    }
+</style>

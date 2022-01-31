@@ -7,7 +7,7 @@
 
 <li>
     <label>
-        <TodoCheckbox todo={todo}/>
+        <TodoCheckbox todo={todo} />
         <p>{todo.text}</p>
     </label>
     <TodoDeadline todo={todo}/>
