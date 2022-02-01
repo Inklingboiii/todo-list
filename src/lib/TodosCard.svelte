@@ -8,7 +8,7 @@
 	<h2>Daily todos</h2>
 	{#if dailyTodos.length}
 		<ul>
-			{#each dailyTodos as dailyTodo}
+			{#each dailyTodos as dailyTodo (dailyTodo.id)}
 				<DailyTodo todo={dailyTodo} />
 			{/each}
 		</ul>
