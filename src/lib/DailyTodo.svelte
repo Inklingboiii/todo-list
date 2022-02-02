@@ -18,8 +18,9 @@
     li {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         gap: 1em;
+        position: relative;
     }
 
     label {

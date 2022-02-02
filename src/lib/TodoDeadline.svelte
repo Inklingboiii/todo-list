@@ -35,7 +35,9 @@
 </script>
 
 
-<time class:late={remainingTimeInMs < lateLimit}>{remainingTime}</time>
+<time class:late={remainingTimeInMs < lateLimit}>
+    {remainingTime}
+</time>
 
 <style>
     .late {
