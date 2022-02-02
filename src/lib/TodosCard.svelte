@@ -24,13 +24,15 @@
 		flex-direction: column;
 		gap: 1em;
 		align-items: center;
-		width: 90%;
+		width: fit-content;
 		margin: auto;
+		padding:  1em;
 		background-color: black;
 		color: white;
 	}
 
 	ul {
 		align-self: stretch;
+		min-height:  50vh;
 	}
 </style>
