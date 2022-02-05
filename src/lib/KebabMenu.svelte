@@ -9,11 +9,10 @@
     function handleKeyup(event) {
         console.log('keydown', event.key)
         let menuItems = [...menu.children];
-        if(event.key === 'Tab' || event.key === 'Escape') toggle = false;
-        if(event.key === 'Escape') menuButton.focus();
+        if(event.key === 'Escape') { menuButton.focus()};
         if(event.key === 'ArrowUp' || event.key === 'ArrowRight') focusedMenuItem--;
         if(event.key === 'ArrowDown' || event.key === 'ArrowLeft') focusedMenuItem--;
-        menuItems.at(focusedMenuItem % menuItems.length).focus();
+        if(['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'].some(arrow => arrow === event.key))  menuItems.at(focusedMenuItem % menuItems.length).focus();
     }
 
     function handleToggle(element) {
@@ -21,6 +20,10 @@
         menu = element;
         focusedMenuItem = 0;
         menu.children[0].focus();
+    }
+
+    function handleFocusOut() {
+       if(!menu.matches(':focus-within')) toggle = false;
     }
 </script>
 
@@ -34,9 +37,9 @@
     </svg>
 </button>
 {#if toggle}
-    <div id="menu" role="menu" aira-labelledby="menu-button" use:handleToggle transition:fade>
+    <div id="menu" role="menu" aria-labelledby="menu-button" use:handleToggle transition:fade>
         {#each actions as action, i (i)}
-            <button role="menuitem" tabindex="-1" on:keydown={handleKeyup}>{action}</button>
+            <button role="menuitem" tabindex="-1" on:keydown={handleKeyup} on:focusout={handleFocusOut}>{action}</button>
         {/each}
     </div>
 {/if}
@@ -61,7 +64,6 @@
         top: 2.5em;
         display: flex;
         flex-direction: column;
-        gap: 1em;
         background-color: hsl(0, 0%, 20%);
     }
 
