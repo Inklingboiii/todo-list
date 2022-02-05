@@ -38,4 +38,8 @@ function expireTodo(todo: Todos[0], succeeded: boolean) {
 	 inactiveTodosStore.update((storeTodos) => [...storeTodos, {...todo, succeeded: succeeded}]);
 }
 
-export { todosStore, inactiveTodosStore, expireTodo };
+function deleteTodo(todo: Todos[0]) {
+	todosStore.update((todos) => todos.filter((storeTodo) => storeTodo.id !== todo.id));
+}
+
+export { todosStore, inactiveTodosStore, expireTodo, deleteTodo };

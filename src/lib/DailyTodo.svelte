@@ -11,7 +11,7 @@
         <p>{todo.text}</p>
     </label>
     <TodoDeadline todo={todo}/>
-    <KebabMenu />
+    <KebabMenu todo={todo} />
 </li>
 
 <style>
