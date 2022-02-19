@@ -42,5 +42,6 @@
 <style>
     .late {
         color: var(--color-primary);
+        font-weight: bold;
     }
 </style>
