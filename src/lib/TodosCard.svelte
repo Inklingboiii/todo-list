@@ -25,6 +25,7 @@
 		gap: 1em;
 		align-items: center;
 		width: fit-content;
+		max-width: 100%;
 		margin: auto;
 		padding:  1em;
 		background-color: black;
@@ -33,6 +34,5 @@
 
 	ul {
 		align-self: stretch;
-		min-height:  50vh;
 	}
 </style>

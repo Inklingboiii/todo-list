@@ -15,6 +15,7 @@ body {
     /* Colors */ 
     --color-primary: #dd505b;
     --color-accent: #50ddd2;
+    --color-gray: hsl(0, 0%, 50%, 0.75);
 
     /* Font sizes */
     --font-h1: clamp(2rem, 2rem + 2vw, 6rem);

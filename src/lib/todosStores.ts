@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { nanoid as uuid } from 'nanoid'
 
 type Todos = Array<{
@@ -42,4 +42,11 @@ function deleteTodo(todo: Todos[0]) {
 	todosStore.update((todos) => todos.filter((storeTodo) => storeTodo.id !== todo.id));
 }
 
-export { todosStore, inactiveTodosStore, expireTodo, deleteTodo };
+function editTodo(todo: Todos[0]) {
+	todosStore.update((todos) => todos.map((storeTodo) => {
+		if(storeTodo.id === todo.id) storeTodo.text = todo.text;
+		return storeTodo;
+	}));
+}
+
+export { todosStore, inactiveTodosStore, expireTodo, deleteTodo, editTodo };

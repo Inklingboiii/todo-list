@@ -1,19 +1,22 @@
 <script>
     import { fade } from 'svelte/transition';
     import { deleteTodo } from '$lib/todosStores';
+    import '$lib/EditModal.svelte';
+    import EditModal from '$lib/EditModal.svelte';
     export let todo;
     let menu;
     let menuButton;
     let focusedMenuItem = 0;
     let toggle = false;
     let typeOfClick; // 0 === keyboard; 1 === mouse
+    let isEditing = false;
     const actions = [{
         name: 'Delete',
         onclick: deleteTodo
     }, 
     {
         name: 'Edit',
-        onclick: function(){}
+        onclick: handleEditButtonClick
     }];
 
     function handleMenuButtonClick(event) {
@@ -21,6 +24,17 @@
         toggle ^= true;
         typeOfClick = event.detail;
     }
+
+    function handleEditButtonClick() {
+        isEditing = true;
+        toggle = false;
+    }
+
+    function closeEditModal() {
+        isEditing = false;
+        menuButton.focus();
+    }
+
 
     function handleKeyup(event) {
         let menuItems = [...menu.children];
@@ -31,6 +45,7 @@
             menuItems.at(focusedMenuItem % menuItems.length).focus();
         }
     }
+
 
     function handleToggle(element) {
         menu = element;
@@ -66,6 +81,10 @@
         {/each}
     </div>
 {/if}
+{#if isEditing}
+    <EditModal {todo} {closeEditModal}/>
+{/if}
+
 <style>
     button {
         border: none;
@@ -96,6 +115,6 @@
     }
 
     #menu > button:is(:focus, :hover) {
-        background-color: hsl(0, 0%, 50%, 0.75);
+        background-color: var(--color-gray);
     }
 </style>

@@ -6,12 +6,13 @@
 </script>
 
 <li>
+    <!-- svelte-ignore a11y-label-has-associated-control -->
     <label>
         <TodoCheckbox todo={todo} />
         <p>{todo.text}</p>
     </label>
-    <TodoDeadline todo={todo}/>
-    <KebabMenu todo={todo} />
+    <TodoDeadline {todo}/>
+    <KebabMenu {todo} />
 </li>
 
 <style>
