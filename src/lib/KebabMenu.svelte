@@ -8,7 +8,6 @@
     let menuButton;
     let focusedMenuItem = 0;
     let toggle = false;
-    let typeOfClick; // 0 === keyboard; 1 === mouse
     let isEditing = false;
     const actions = [{
         name: 'Delete',
@@ -22,7 +21,6 @@
     function handleMenuButtonClick(event) {
         // Extremely big brain toggle mechanic
         toggle ^= true;
-        typeOfClick = event.detail;
     }
 
     function handleEditButtonClick() {
@@ -40,8 +38,8 @@
         let menuItems = [...menu.children];
         if(event.key === 'Escape') menuButton.focus();
         else {
-            if(event.key === 'ArrowUp' || event.key === 'ArrowRight') focusedMenuItem--;
-            if(event.key === 'ArrowDown' || event.key === 'ArrowLeft') focusedMenuItem--;
+            if(event.key === 'ArrowUp') focusedMenuItem--;
+            if(event.key === 'ArrowDown') focusedMenuItem--;
             menuItems.at(focusedMenuItem % menuItems.length).focus();
         }
     }
@@ -50,14 +48,7 @@
     function handleToggle(element) {
         menu = element;
         focusedMenuItem = 0;
-        // Focus first item if opened via keyboard
-        if(typeOfClick) {
-            menu.focus();
-            console.log('menu focused')
-        } else {
-            console.log('first item focused');
-            [...menu.children][0].focus();
-        }
+        [...menu.children][0].focus();
     }
 
     function handleFocusOut(event) {
