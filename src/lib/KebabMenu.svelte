@@ -1,7 +1,6 @@
 <script>
     import { fade } from 'svelte/transition';
     import { deleteTodo } from '$lib/todosStores';
-    import '$lib/EditModal.svelte';
     import EditModal from '$lib/EditModal.svelte';
     export let todo;
     let menu;
@@ -16,7 +15,8 @@
     {
         name: 'Edit',
         onclick: handleEditButtonClick
-    }];
+    }
+    ];
 
     function handleMenuButtonClick(event) {
         // Extremely big brain toggle mechanic
@@ -34,18 +34,19 @@
     }
 
 
-    function handleKeyup(event) {
+    function handleKeydown(event) {
         let menuItems = [...menu.children];
         if(event.key === 'Escape') menuButton.focus();
         else {
             if(event.key === 'ArrowUp') focusedMenuItem--;
-            if(event.key === 'ArrowDown') focusedMenuItem--;
+            if(event.key === 'ArrowDown') focusedMenuItem++;
             menuItems.at(focusedMenuItem % menuItems.length).focus();
         }
     }
 
 
     function handleToggle(element) {
+        console.log('toggled')
         menu = element;
         focusedMenuItem = 0;
         [...menu.children][0].focus();
@@ -59,16 +60,17 @@
 </script>
 
 <button on:click={handleMenuButtonClick} bind:this={menuButton} aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" id="menu-button">
-    <svg width="16px" height="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
         <circle cx="8" cy="2.5" r=".75"/>
         <circle cx="8" cy="8" r=".75"/>
         <circle cx="8" cy="13.5" r=".75"/>
     </svg>
+
 </button>
 {#if toggle}
     <div id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" on:focusout={handleFocusOut} use:handleToggle transition:fade>
         {#each actions as action, i (i)}
-            <button role="menuitem" tabindex="-1" on:click={() => action.onclick(todo)} on:keydown={handleKeyup} on:focusout={handleFocusOut}>{action.name}</button>
+            <button role="menuitem" tabindex="-1" on:click={() => action.onclick(todo)} on:keydown={handleKeydown} on:focusout={handleFocusOut}>{action.name}</button>
         {/each}
     </div>
 {/if}
