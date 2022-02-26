@@ -17,8 +17,7 @@
         onclick: handleEditButtonClick
     }];
 
-    function handleMenuButtonClick(event) {
-        console.log(event.type)
+    function handleMenuButtonClick() {
         // Extremely big brain toggle mechanic
         toggle ^= true;
     }
@@ -55,7 +54,7 @@
     function handleFocusOut(event) {
         // Toggle off menu if click outside of it
         console.log('focusout')
-       if(!menu.contains(event.relatedTarget)) toggle = false;
+       if(!menu.contains(event.relatedTarget)  && event.relatedTarget !== menuButton) toggle = false;
     }
 </script>
 
@@ -69,13 +68,11 @@
 
 </button>
 {#if toggle}
-    <ul id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" on:focusout={handleFocusOut} use:handleToggle transition:fade>
+    <div id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" use:handleToggle transition:fade>
         {#each actions as action, i (i)}
-        <li role="menuitem" tabindex="-1" on:click={() => action.onclick(todo)} on:keydown={handleKeydown} on:focusout={handleFocusOut}>
-            <button>{action.name}</button>
-        </li>
+            <button role="menuitem" on:click={() => action.onclick(todo)} tabindex="-1"  on:keydown={handleKeydown} on:focusout={handleFocusOut}>{action.name}</button>
         {/each}
-    </ul>
+    </div>
 {/if}
 {#if isEditing}
     <EditModal {todo} {closeEditModal}/>
@@ -105,17 +102,12 @@
         background-color: hsl(0, 0%, 20%);
     }
 
-    #menu > li {
+    #menu > button {
         transition: background-color .3s;
-    }
-
-    #menu > li:is(:focus, :hover) {
-        background-color: var(--color-gray);
-    }
-
-    #menu button {
-        width: 100%;
-        height: 100%;
         padding: 1em;
+    }
+
+    #menu > button:is(:focus, :hover) {
+        background-color: var(--color-gray);
     }
 </style>
