@@ -15,10 +15,10 @@
     {
         name: 'Edit',
         onclick: handleEditButtonClick
-    }
-    ];
+    }];
 
     function handleMenuButtonClick(event) {
+        console.log(event.type)
         // Extremely big brain toggle mechanic
         toggle ^= true;
     }
@@ -59,20 +59,23 @@
     }
 </script>
 
-<button on:click={handleMenuButtonClick} bind:this={menuButton} aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" id="menu-button">
+<button on:click={handleMenuButtonClick} bind:this={menuButton} aria-label="actionmenu" aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" id="menu-button">
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
         <circle cx="8" cy="2.5" r=".75"/>
         <circle cx="8" cy="8" r=".75"/>
         <circle cx="8" cy="13.5" r=".75"/>
+        <title>Action Menu</title>
     </svg>
 
 </button>
 {#if toggle}
-    <div id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" on:focusout={handleFocusOut} use:handleToggle transition:fade>
+    <ul id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" on:focusout={handleFocusOut} use:handleToggle transition:fade>
         {#each actions as action, i (i)}
-            <button role="menuitem" tabindex="-1" on:click={() => action.onclick(todo)} on:keydown={handleKeydown} on:focusout={handleFocusOut}>{action.name}</button>
+        <li role="menuitem" tabindex="-1" on:click={() => action.onclick(todo)} on:keydown={handleKeydown} on:focusout={handleFocusOut}>
+            <button>{action.name}</button>
+        </li>
         {/each}
-    </div>
+    </ul>
 {/if}
 {#if isEditing}
     <EditModal {todo} {closeEditModal}/>
@@ -102,12 +105,17 @@
         background-color: hsl(0, 0%, 20%);
     }
 
-    #menu > button {
-        padding: 1em;
+    #menu > li {
         transition: background-color .3s;
     }
 
-    #menu > button:is(:focus, :hover) {
+    #menu > li:is(:focus, :hover) {
         background-color: var(--color-gray);
+    }
+
+    #menu button {
+        width: 100%;
+        height: 100%;
+        padding: 1em;
     }
 </style>
