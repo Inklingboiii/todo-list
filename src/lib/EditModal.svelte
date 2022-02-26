@@ -3,13 +3,22 @@
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
 
+    function modal(modalElement) {
+        modalElement.querySelector('input').focus();
+    }
+
     function handleSubmit() {
         editTodo(todo);
         closeEditModal();
     }
+
+    function handleKeydown(event) {
+        if(event.key === 'Escape') closeEditModal();
+    }
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal>
+    <h3 id="heading">Edit Todo</h3>
     <input bind:value={todo.text}>
     <button>Save</button>
     <button type="button" on:click={closeEditModal}>Cancel</button>
@@ -19,6 +28,15 @@
     form {
         position: fixed;
         inset: 20%;
-        background: var(--color-gray);
+        background: var(--color-dark);
+        z-index: 10;
+    }
+
+    form::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: var(--color-dark);
+        z-index: -1;
     }
 </style>
