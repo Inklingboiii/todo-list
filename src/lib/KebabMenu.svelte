@@ -39,7 +39,8 @@
             toggle = false;
             menuButton.focus();
         }
-        else {
+        else if(event.key === 'ArrowUp'|| event.key === 'ArrowDown'){
+            event.preventDefault();
             if(event.key === 'ArrowUp') focusedMenuItem--;
             if(event.key === 'ArrowDown') focusedMenuItem++;
             menuItems.at(focusedMenuItem % menuItems.length).focus();
