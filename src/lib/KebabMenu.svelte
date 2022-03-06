@@ -35,7 +35,10 @@
 
     function handleKeydown(event) {
         let menuItems = [...menu.children];
-        if(event.key === 'Escape') menuButton.focus();
+        if(event.key === 'Escape') {
+            toggle = false;
+            menuButton.focus();
+        }
         else {
             if(event.key === 'ArrowUp') focusedMenuItem--;
             if(event.key === 'ArrowDown') focusedMenuItem++;
@@ -54,6 +57,7 @@
     function handleFocusOut(event) {
         // Toggle off menu if click outside of it
         console.log('focusout')
+        // Exclude menubutton to remove inconsistencies when pressed while toggled open
        if(!menu.contains(event.relatedTarget)  && event.relatedTarget !== menuButton) toggle = false;
     }
 </script>
