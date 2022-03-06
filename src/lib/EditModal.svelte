@@ -23,20 +23,20 @@
     <button>Save</button>
     <button type="button" on:click={closeEditModal}>Cancel</button>
 </form>
+<div class="overlay"></div>
 
 <style>
     form {
         position: fixed;
         inset: 20%;
-        background: var(--color-dark);
+        background: white;
         z-index: 10;
     }
 
-    form::after {
-        content: '';
+   .overlay {
         position: fixed;
         inset: 0;
         background: var(--color-dark);
-        z-index: -1;
+        z-index: 1;
     }
 </style>
