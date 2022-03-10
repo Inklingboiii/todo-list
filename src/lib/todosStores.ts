@@ -43,10 +43,11 @@ function deleteTodo(todo: Todos[0]) {
 }
 
 function editTodo(todo: Todos[0]) {
-	todosStore.update((todos) => todos.map((storeTodo) => {
-		if(storeTodo.id === todo.id) storeTodo.text = todo.text;
-		return storeTodo;
-	}));
+	todosStore.update((todos) => {
+		todos.find((storeTodo) => 
+		storeTodo.id === todo.id).text = todo.text;
+		return todos;
+	});
 }
 
 export { todosStore, inactiveTodosStore, expireTodo, deleteTodo, editTodo };

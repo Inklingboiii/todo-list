@@ -2,6 +2,7 @@
     export let todo;
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
+    import CallToAction from '$lib/CallToAction.svelte';
     let firstTabElement;
     let lastTabElement;
 
@@ -16,6 +17,10 @@
         closeEditModal();
     }
 
+    function handleCancel() {
+        todo.text = intialTodoText
+        closeEditModal();
+    }
     function handleKeydown(event) {
         if(event.key === 'Escape') closeEditModal();
         trapTabKey(event);
@@ -45,11 +50,14 @@
 
 <form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal>
     <h3 id="heading">Edit Todo</h3>
-    <input bind:value={todo.text} id="first">
-    <button>Save</button>
-    <button type="button" on:click={closeEditModal} id="last">Cancel</button>
+    <div>
+        <input bind:value={todo.text} id="first">
+        <CallToAction>Save</CallToAction>
+        <button type="button" on:click={closeEditModal} id="last">Cancel</button>
+    </div>
 </form>
-<div class="overlay"></div>
+<!-- Used as tint and to close modal on focusout -->
+<div class="overlay" on:click={closeEditModal}></div>
 
 <style>
     form {
@@ -65,7 +73,13 @@
         background: var(--color-dark);
         z-index: 1;
     }
-    h3 {
-        color:black;
+    form > div {
+        display: flex;
+        align-items: center;
+    }
+
+    #heading {
+        color: black;
+        text-align: center;
     }
 </style>
