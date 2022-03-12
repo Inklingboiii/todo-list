@@ -2,6 +2,8 @@
     export let todo;
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
+    import { fly } from 'svelte/transition';
+    import FloatingInput from '$lib/FloatingInput.svelte';
     let firstTabElement;
     let lastTabElement;
     let inputValue = todo.text;
@@ -45,10 +47,11 @@
     }
 </script>
 
-<form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal>
+<form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal transition:fly={{y: 500, duration: 500}}>
     <h3 id="heading">Edit Todo</h3>
     <div>
-        <input bind:value={inputValue} id="first">
+       <!-- <input bind:value={inputValue} id="first">-->
+        <FloatingInput data={{value: inputValue, id: "first", name: null, labelText: "Todo"}} />
         <button>Save</button>
         <button type="button" on:click={closeEditModal} id="last">Cancel</button>
     </div>
@@ -61,6 +64,7 @@
         position: fixed;
         inset: 20%;
         background: white;
+        color: black;
         z-index: 10;
     }
 
@@ -76,7 +80,6 @@
     }
 
     #heading {
-        color: black;
         text-align: center;
     }
 </style>
