@@ -2,9 +2,9 @@
     export let todo;
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
-    import CallToAction from '$lib/CallToAction.svelte';
     let firstTabElement;
     let lastTabElement;
+    let inputValue = todo.text;
 
     function modal(modalElement) {
         firstTabElement = modalElement.querySelector('#first')
@@ -13,14 +13,11 @@
     }
 
     function handleSubmit() {
+        todo.text = inputValue;
         editTodo(todo);
         closeEditModal();
     }
 
-    function handleCancel() {
-        todo.text = intialTodoText
-        closeEditModal();
-    }
     function handleKeydown(event) {
         if(event.key === 'Escape') closeEditModal();
         trapTabKey(event);
@@ -51,8 +48,8 @@
 <form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal>
     <h3 id="heading">Edit Todo</h3>
     <div>
-        <input bind:value={todo.text} id="first">
-        <CallToAction>Save</CallToAction>
+        <input bind:value={inputValue} id="first">
+        <button>Save</button>
         <button type="button" on:click={closeEditModal} id="last">Cancel</button>
     </div>
 </form>
