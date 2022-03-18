@@ -49,8 +49,8 @@
 
 <form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal transition:fly={{y: 500, duration: 500}}>
     <h3 id="heading">Edit Todo</h3>
+    <input bind:value={inputValue} id="first">
     <div>
-        <input bind:value={inputValue} id="first">
         <button>Save</button>
         <button type="button" on:click={closeEditModal} id="last">Cancel</button>
     </div>
@@ -60,8 +60,17 @@
 
 <style>
     form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1em;
         position: fixed;
-        inset: 20%;
+        inset: 0;
+        max-height: calc(10% + 5rem);
+        max-width: calc(30% + 5rem);
+        padding: 1em;
+        margin: auto;
         background: white;
         color: black;
         z-index: 10;
@@ -73,12 +82,12 @@
         background: var(--color-dark);
         z-index: 1;
     }
-    form > div {
-        display: flex;
-        align-items: center;
+    
+    input {
+        width: 100%;
     }
 
-    #heading {
-        text-align: center;
+    form > div {
+        align-self: flex-end;
     }
 </style>
