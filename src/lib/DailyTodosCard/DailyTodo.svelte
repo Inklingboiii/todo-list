@@ -1,8 +1,8 @@
 <script>
     export let todo;
-    import KebabMenu from '$lib/KebabMenu.svelte';
-    import TodoDeadline from '$lib/TodoDeadline.svelte';
-    import TodoCheckbox from '$lib/TodoCheckbox.svelte';
+    import KebabMenu from '$lib/utilities/KebabMenu.svelte';
+    import TodoDeadline from '$lib/DailyTodosCard/TodoDeadline.svelte';
+    import TodoCheckbox from '$lib/DailyTodosCard/TodoCheckbox.svelte';
 </script>
 
 <li>

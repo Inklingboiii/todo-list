@@ -1,5 +1,5 @@
 <script>
-    import Link from '$lib/Link.svelte';
+    import Link from '$lib/utilities/Link.svelte';
 </script>
 <nav>
     <Link href="/">Home</Link>

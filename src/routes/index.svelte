@@ -1,7 +1,7 @@
 <script>
     import MainHeading from '$lib/MainHeading.svelte';
     import Quote from '$lib/Quote.svelte';
-    import TodosCard from '$lib/TodosCard.svelte';
+    import TodosCard from '$lib/DailyTodosCard/TodosCard.svelte';
     export let quote;
 </script>
 <script context="module">

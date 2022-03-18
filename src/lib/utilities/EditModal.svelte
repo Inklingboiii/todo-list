@@ -3,7 +3,6 @@
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
     import { fly } from 'svelte/transition';
-    import FloatingInput from '$lib/FloatingInput.svelte';
     let firstTabElement;
     let lastTabElement;
     let inputValue = todo.text;

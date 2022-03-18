@@ -1,7 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
     import { deleteTodo } from '$lib/todosStores';
-    import EditModal from '$lib/EditModal.svelte';
+    import EditModal from '$lib/utilities/EditModal.svelte';
     export let todo;
     let menu;
     let menuButton;

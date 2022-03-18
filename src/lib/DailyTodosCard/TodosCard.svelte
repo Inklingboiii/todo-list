@@ -1,8 +1,8 @@
 <script>
 	import { todosStore } from '$lib/todosStores';
 	$: dailyTodos = $todosStore.filter((todo) => todo.today);
-	import DailyTodo from '$lib/DailyTodo.svelte';
-	import CallToAction from '$lib/CallToAction.svelte';
+	import DailyTodo from '$lib/DailyTodosCard/DailyTodo.svelte';
+	import CallToAction from '$lib/utilities/CallToAction.svelte';
 </script>
 <article>
 	<h2>Daily todos</h2>
