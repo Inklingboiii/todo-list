@@ -17,7 +17,8 @@ type InactiveTodos = Todos & Array<{
 const todos: Todos = [
 	{text: 'example test', today: true, deadline: new Date(new Date().setHours(new Date().getHours() + 2)), id: uuid()},
 	{text: 'example test 2', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 120)), id: uuid()},
-	{text: 'example test 3', today: true, deadline: new Date(new Date().setHours(new Date().getHours() + 10)), id: uuid()},
+	{text: 'example goal 1', today: false, deadline: new Date(new Date().setHours(new Date().getHours() + 48)), id: uuid()},
+	{text: 'example goal 2', today: false, deadline: new Date(new Date().setMonth(new Date().getMonth() + 1)), id: uuid()},
 
 ];
 const inactiveTodos: InactiveTodos = [{text: 'missed todo', today: true, deadline: new Date(), succeeded: false, id: uuid()}];
@@ -50,4 +51,11 @@ function editTodo(todo: Todos[0]) {
 	});
 }
 
-export { todosStore, inactiveTodosStore, expireTodo, deleteTodo, editTodo };
+function sortTodosByDeadline(todosStore: Todos) {
+	// Make a copy of it, since sort() doesn't return a new array
+	return todosStore.slice().sort((todoOne: Todos[0], todoTwo: Todos[0]) => {
+		return todoOne.deadline.getTime() - todoTwo.deadline.getTime()
+	});
+}
+
+export { todosStore, inactiveTodosStore, expireTodo, deleteTodo, editTodo, sortTodosByDeadline };

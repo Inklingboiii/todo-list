@@ -2,6 +2,7 @@
     import MainHeading from '$lib/MainHeading.svelte';
     import Quote from '$lib/Quote.svelte';
     import TodosCard from '$lib/DailyTodosCard/TodosCard.svelte';
+    import NextTodo from '$lib/NextTodo.svelte';
     export let quote;
 </script>
 <script context="module">
@@ -26,6 +27,7 @@
 </header>
 <main>
     <TodosCard />
+    <NextTodo />
 </main>
 <footer>
     <p>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></p>
