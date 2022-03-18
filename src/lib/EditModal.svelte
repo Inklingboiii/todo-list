@@ -47,7 +47,7 @@
     }
 </script>
 
-<form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal transition:fly={{y: 500, duration: 500}}>
+<form role="dialog" aria-modal="true" aria-labelledby="heading" on:submit|preventDefault={handleSubmit} on:keydown={handleKeydown} use:modal transition:fly={{y: 500, duration: 300}}>
     <h3 id="heading">Edit Todo</h3>
     <input bind:value={inputValue} id="first">
     <div>
