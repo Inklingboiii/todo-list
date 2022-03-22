@@ -3,6 +3,7 @@
     import Quote from '$lib/Quote.svelte';
     import TodosCard from '$lib/DailyTodosCard/TodosCard.svelte';
     import NextTodo from '$lib/NextTodo.svelte';
+    import Link from '$lib/utilities/Link.svelte';
     export let quote;
 </script>
 <script context="module">
@@ -30,5 +31,19 @@
     <NextTodo />
 </main>
 <footer>
-    <p>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></p>
+    <p>Inspirational quotes provided by <Link href="https://zenquotes.io/"newTab={true}>ZenQuotes API</Link></p>
 </footer>
+
+
+<style>
+    footer {
+        background: var(--color-dark);
+        color: white;
+        margin: 0;
+        padding-block: 3em;
+    }
+
+    :global(footer > p > a) {
+        color: var(--color-accent);
+    }
+</style>
