@@ -36,11 +36,28 @@
 
 
 <style>
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    /* Non mobile view  */
+    @media (min-width: 60em) {
+        main {
+            flex-direction: row;
+        }
+    }
+
     footer {
         background: var(--color-dark);
         color: white;
         margin: 0;
         padding-block: 3em;
+    }
+
+    footer > p {
+        margin: auto;
+        text-align: center;
     }
 
     :global(footer > p > a) {
