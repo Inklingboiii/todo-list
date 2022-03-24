@@ -1,8 +1,9 @@
 <script>
     export let href;
+    export let newTab;
 </script>
 
-<a href={href}>
+<a href={href} target={newTab ? '_blank' : null}>
     <slot></slot>
 </a>
 

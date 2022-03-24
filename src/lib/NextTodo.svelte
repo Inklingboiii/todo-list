@@ -8,3 +8,12 @@
     <p>{nextTodo.text}</p>
     <time>{nextTodo.deadline}</time>
 </article>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+</style>
