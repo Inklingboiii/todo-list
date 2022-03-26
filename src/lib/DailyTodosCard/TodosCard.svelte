@@ -32,6 +32,12 @@
 		color: white;
 	}
 
+	@media (min-width: 60em) {
+		article {
+			margin: 0;
+		}
+	}
+
 	ul {
 		align-self: stretch;
 	}

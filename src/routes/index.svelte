@@ -41,10 +41,11 @@
         flex-direction: column;
         gap: 1em;
     }
-    /* Non mobile view  */
+   
     @media (min-width: 60em) {
         main {
             flex-direction: row;
+            justify-content: space-evenly;
         }
     }
 
@@ -52,7 +53,7 @@
         background: var(--color-dark);
         color: white;
         margin: 0;
-        padding-block: 3em;
+        padding-block: 1.5em;
     }
 
     footer > p {
