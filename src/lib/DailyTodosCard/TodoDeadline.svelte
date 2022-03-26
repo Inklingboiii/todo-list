@@ -38,10 +38,3 @@
 <time class:late={remainingTimeInMs < lateLimit}>
     {remainingTime}
 </time>
-
-<style>
-    .late {
-        color: var(--color-primary);
-        font-weight: bold;
-    }
-</style>

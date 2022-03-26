@@ -43,3 +43,8 @@ ul {
 time {
     font-family: 'Liberation Mono', monospace;
 }
+
+time.late {
+        color: var(--color-primary);
+        font-weight: bold;
+}

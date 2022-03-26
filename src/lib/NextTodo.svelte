@@ -8,10 +8,10 @@
           month: 'numeric',
           day: 'numeric',
           minute: 'numeric',
-          'second': 'numeric'
+          second: 'numeric'
         }).format(nextTodo.deadline);
     let currentTime = Date.now();
-    const lateLimit = 1000 * 60 * 60 * 24 // A day
+    const lateLimit = 1000 * 60 * 60 * 23 // A day
 
     onMount(() => {
         let deadlineInterval = setInterval(() => {
@@ -39,10 +39,5 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-    }
-
-    .late {
-        color: var(--color-primary);
-        font-weight: bold;
     }
 </style>
