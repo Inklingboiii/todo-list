@@ -11,10 +11,11 @@
           second: 'numeric'
         }).format(nextTodo.deadline);
     let currentTime = Date.now();
-    const lateLimit = 1000 * 60 * 60 * 23 // A day
+    const lateLimit = 1000 * 60 * 60 * 24 // A day
 
     onMount(() => {
         let deadlineInterval = setInterval(() => {
+            // console.log(nextTodo.deadline - currentTime, lateLimit)
             currentTime = Date.now();
             // Check if todo expired
             if(nextTodo.deadline <= currentTime) {
@@ -28,7 +29,7 @@
 <article>
     <h2>Next long term goal</h2>
     <p>{nextTodo.text}</p>
-    <time class:late={nextTodo.deadline - currentTime < lateLimit}>
+    <time class:late={nextTodo.deadline - lateLimit < currentTime }>
         {deadline}
     </time>
 </article>
