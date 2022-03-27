@@ -22,6 +22,10 @@
         }
    }
 </script>
+<svelte:head>
+    <title>Generic to-do list</title>
+</svelte:head>
+
 <header>
     <MainHeading>Generic to-do list</MainHeading>
     <Quote quote={quote} />
@@ -42,7 +46,7 @@
         gap: 1em;
     }
    
-    @media (min-width: 60em) {
+    @media (min-width: 50em) {
         main {
             flex-direction: row;
             justify-content: space-evenly;
@@ -64,4 +68,12 @@
     :global(footer > p > a) {
         color: var(--color-accent);
     }
+
+    :global(#svelte) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3em;
+    min-height: 100vh;
+}
 </style>

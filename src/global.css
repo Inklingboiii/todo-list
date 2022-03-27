@@ -48,11 +48,3 @@ time.late {
         color: var(--color-primary);
         font-weight: bold;
 }
-
-#svelte {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3em;
-    min-height: 100vh;
-}

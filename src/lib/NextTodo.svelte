@@ -8,7 +8,6 @@
           month: 'numeric',
           day: 'numeric',
           minute: 'numeric',
-          second: 'numeric'
         }).format(nextTodo.deadline);
     let currentTime = Date.now();
     const lateLimit = 1000 * 60 * 60 * 24 // A day

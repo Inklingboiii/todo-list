@@ -32,7 +32,7 @@
 		color: white;
 	}
 
-	@media (min-width: 60em) {
+	@media (min-width: 50em) {
 		article {
 			margin: 0;
 		}

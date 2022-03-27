@@ -3,8 +3,8 @@
 </script>
 
 <div>
-    <input bind:value={data.value} id={data.id} name={data.name} placeholder="">
-    <label for={data.id}>{data.labelText}</label>
+    <input type={data.type} id={data.name} name={data.name} required={data.required} placeholder="">
+    <label for={data.name}>{data.labelText}</label>
 </div>
 
 <style>
