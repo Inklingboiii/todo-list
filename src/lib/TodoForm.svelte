@@ -4,8 +4,6 @@
 	let min = new Date();
 	// Add offset, since it gets converted into UTC when converted into ISO string 
 	min.setMinutes(-min.getTimezoneOffset() + min.getMinutes())
-	min.toISOString()
-
 	min = min.toISOString().slice(0, 16);
 
 </script>
@@ -24,9 +22,9 @@
 		</label>
 	</fieldset>
 	{#if today}
-		<input type="datetime-local" min={min}>
+		<input type="datetime-local" {min}>
 	{:else}
-		<input type="datetime-local" min={min}>
+		<input type="datetime-local" {min}>
 	{/if}
 
 	<button>Save</button>
