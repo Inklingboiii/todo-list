@@ -1,6 +1,12 @@
 <script>
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
 	let today = true
+	let min = new Date();
+	// Add offset, since it gets converted into UTC when converted into ISO string 
+	min.setMinutes(-min.getTimezoneOffset() + min.getMinutes())
+	min.toISOString()
+
+	min = min.toISOString().slice(0, 16);
 
 </script>
 
@@ -18,9 +24,9 @@
 		</label>
 	</fieldset>
 	{#if today}
-		<input type="datetime-local" min={new Date().toISOString().slice(0, 16)}>
+		<input type="datetime-local" min={min}>
 	{:else}
-		<input type="datetime-local" min={new Date().toISOString().slice(0, 16)}>
+		<input type="datetime-local" min={min}>
 	{/if}
 
 	<button>Save</button>
