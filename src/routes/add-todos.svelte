@@ -8,3 +8,9 @@
 <main>
 	<TodoForm />
 </main>
+
+<style>
+	main {
+		margin-bottom: auto;
+	}
+</style>

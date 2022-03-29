@@ -69,11 +69,4 @@
         color: var(--color-accent);
     }
 
-    :global(#svelte) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3em;
-    min-height: 100vh;
-}
 </style>

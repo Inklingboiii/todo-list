@@ -11,7 +11,7 @@
     nav {
         display: flex;
         justify-content: space-around;
-        padding:1em;
+        padding: 1em;
         background: black;
     }
 
