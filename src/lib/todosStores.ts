@@ -32,11 +32,16 @@ inactiveTodosStore.subscribe((inactiveTodos) => {
 	// Update database everytime store changes
 });
 
+function addTodo(todo: Todos[0]) {
+console.log(JSON.parse(JSON.stringify(get(todosStore))));
+todosStore.update((todos) => [...todos, todo])
+console.log(JSON.parse(JSON.stringify(get(todosStore))));
+}
+
 function expireTodo(todo: Todos[0], succeeded: boolean) {
-	console.log('B', todo.text)
-	 // Move todo to inactivetodo store
-	 todosStore.update((todos) => todos.filter((storeTodo) => storeTodo.id !== todo.id));
-	 inactiveTodosStore.update((storeTodos) => [...storeTodos, {...todo, succeeded: succeeded}]);
+	// Move todo to inactivetodo store
+	todosStore.update((todos) => todos.filter((storeTodo) => storeTodo.id !== todo.id));
+	inactiveTodosStore.update((storeTodos) => [...storeTodos, {...todo, succeeded: succeeded}]);
 }
 
 function deleteTodo(todo: Todos[0]) {
@@ -58,4 +63,4 @@ function sortTodosByDeadline(todosStore: Todos) {
 	});
 }
 
-export { todosStore, inactiveTodosStore, expireTodo, deleteTodo, editTodo, sortTodosByDeadline };
+export { todosStore, inactiveTodosStore, addTodo, expireTodo, deleteTodo, editTodo, sortTodosByDeadline };

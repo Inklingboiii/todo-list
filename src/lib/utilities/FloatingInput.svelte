@@ -1,9 +1,10 @@
 <script>
     export let data;
+    export let text;
 </script>
 
 <div>
-    <input type={data.type} id={data.name} name={data.name} required={data.required} placeholder="">
+    <input bind:value={text} id={data.name} name={data.name} required={data.required} placeholder="">
     <label for={data.name}>{data.labelText}</label>
 </div>
 

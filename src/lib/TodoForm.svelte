@@ -1,6 +1,10 @@
 <script>
+	import { addTodo } from '$lib/todosStores.ts';
+	import { nanoid as uuid } from 'nanoid'
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
 	let today = true
+	let text;
+	let deadline;
 	let min = formatDate(new Date());
 	let max = null;
 	$: {
@@ -20,10 +24,21 @@
 		date.setMinutes(-date.getTimezoneOffset() + date.getMinutes())
 		return date.toISOString().slice(0, 16);
 	}
+
+	function handleSubmit() {
+		console.log('b', new Date(deadline));
+		let todo = {
+			text,
+			today,
+			deadline: new Date(deadline).getTime(),
+			id: uuid()
+		}
+		addTodo(todo);
+	}
 </script>
 
-<form>
-	<FloatingInput data={{name: 'name', labelText: 'Name', required: true}} />
+<form on:submit|preventDefault={handleSubmit}>
+	<FloatingInput bind:text data={{name: 'name', labelText: 'Name', required: true, value: text}} />
 	<fieldset>
 		<legend>Time span</legend>
 		<label>
@@ -35,7 +50,7 @@
 		<input type="radio" name="timespan" value={false} bind:group={today}>
 		</label>
 	</fieldset>
-	<input type="datetime-local" {min} {max}>
-	
+	<input bind:value={deadline} type="datetime-local" {min} {max} required>
+
 	<button>Save</button>
 </form>
