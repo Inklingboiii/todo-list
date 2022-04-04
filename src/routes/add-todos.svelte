@@ -11,6 +11,7 @@
 
 <style>
 	main {
-		margin-bottom: auto;
+		margin: auto;
+		align-self: center;
 	}
 </style>

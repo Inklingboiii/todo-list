@@ -2,6 +2,7 @@
 	import { addTodo } from '$lib/todosStores.ts';
 	import { nanoid as uuid } from 'nanoid'
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
+	import Button from '$lib/utilities/Button.svelte';
 	let today = true
 	let text;
 	let deadline;
@@ -52,5 +53,19 @@
 	</fieldset>
 	<input bind:value={deadline} type="datetime-local" {min} {max} required>
 
-	<button>Save</button>
+	<Button>Save</Button>
 </form>
+
+<style>
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-around;
+		min-height: 50vh;
+		background-color: var(--color-gray);
+		padding: 1em 2em;
+		/* Makes it so nothing goes behind it; fixes issue with button */
+		isolation: isolate;
+	}
+</style>
