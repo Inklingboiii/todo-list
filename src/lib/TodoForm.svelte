@@ -63,7 +63,9 @@
 		align-items: flex-start;
 		justify-content: space-around;
 		min-height: 50vh;
-		background-color: var(--color-gray);
+		background-color: var(--color-dark);
+		color: white;
+		box-shadow: var(--color-gray) 0px 0px 1em 0.5em;
 		padding: 1em 2em;
 		/* Makes it so nothing goes behind it; fixes issue with button */
 		isolation: isolate;

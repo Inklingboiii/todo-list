@@ -3,6 +3,7 @@
     export let closeEditModal;
     import { editTodo } from '$lib/todosStores';
     import { fly } from 'svelte/transition';
+    import Button from '$lib/utilities/Button.svelte';
     let firstTabElement;
     let lastTabElement;
     let inputValue = todo.text;
@@ -50,8 +51,8 @@
     <h3 id="heading">Edit Todo</h3>
     <input bind:value={inputValue} id="first">
     <div>
-        <button>Save</button>
-        <button type="button" on:click={closeEditModal} id="last">Cancel</button>
+        <Button>Save</Button>
+        <Button minimal type="button" onClick={closeEditModal} id="last">Cancel</Button>
     </div>
 </form>
 <!-- Used as tint and to close modal on focusout -->
@@ -62,7 +63,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: space-around;
         gap: 1em;
         position: fixed;
         inset: 0;
@@ -87,6 +88,8 @@
     }
 
     form > div {
+        display: flex;
+        gap: 1em;
         align-self: flex-end;
     }
 </style>
