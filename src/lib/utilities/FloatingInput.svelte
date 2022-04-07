@@ -1,11 +1,12 @@
 <script>
-    export let data;
     export let text;
+    export let name;
+    export let required;
 </script>
 
 <div>
-    <input bind:value={text} id={data.name} name={data.name} required={data.required} placeholder="">
-    <label for={data.name}>{data.labelText}</label>
+    <input bind:value={text} id={name} {name} {required} placeholder="">
+    <label for={name}><slot></slot></label>
 </div>
 
 <style>
@@ -25,6 +26,7 @@
         margin: 0;
         width: 100%;
         height: 100%;
+        color: currentcolor;
     }
 
     label {

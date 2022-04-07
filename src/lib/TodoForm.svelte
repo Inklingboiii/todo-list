@@ -39,7 +39,9 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-	<FloatingInput bind:text data={{name: 'name', labelText: 'Name', required: true, value: text}} />
+	<FloatingInput bind:text name='name' required>
+	Name
+	</FloatingInput>
 	<fieldset>
 		<legend>Time span</legend>
 		<label>
