@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { addTodo } from '$lib/todosStores.ts';
 	import { nanoid as uuid } from 'nanoid'
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
@@ -35,6 +36,7 @@
 			id: uuid()
 		}
 		addTodo(todo);
+		goto('/');
 	}
 </script>
 
