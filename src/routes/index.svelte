@@ -1,5 +1,5 @@
 <script>
-    import MainHeading from '$lib/MainHeading.svelte';
+    import MainHeading from '$lib/utilities/MainHeading.svelte';
     import Quote from '$lib/Quote.svelte';
     import TodosCard from '$lib/DailyTodosCard/TodosCard.svelte';
     import NextTodo from '$lib/NextTodo.svelte';
