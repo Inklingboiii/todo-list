@@ -6,16 +6,17 @@
     let cellArray = [];
     $: {
         cellArray = [];
-        let day = new Date();
-        day.setFullYear(displayedYear);
-        day.setMonth(displayedDate.getMonth());
+        let day = new Date(displayedYear, displayedDate.getMonth() + 1, 0);
+        let numberOfDaysInMonth = day.getDate();
         day.setDate(1);
         // Sunday - Saturday : 0 - 6
         day = day.getDay();
+        console.log(day)
         for(let tableWeek = 0; tableWeek < 6; tableWeek++) {
             cellArray.push([]);
             for(let tableDay = 0; tableDay < 7; tableDay++) {
-                cellArray[tableWeek][tableDay] = tableDay + tableWeek * 7;
+                let result = ((tableDay + tableWeek * 7) % numberOfDaysInMonth) + 1
+                cellArray[tableWeek][tableDay] = result;
             }
         }
     }
