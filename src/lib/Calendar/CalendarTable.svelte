@@ -1,5 +1,5 @@
 <script>
-    let displayedDate = new Date();
+    let displayedDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
     // Change later to default for internation setting?
     $: displayedMonth =  displayedDate.toLocaleString('en', { month: 'long' });
     $: displayedYear =  displayedDate.getFullYear();
@@ -11,7 +11,8 @@
         let day = new Date(displayedYear, displayedDate.getMonth(), 1);
         // Sunday - Saturday : 0 - 6
         day = day.getDay();
-        let offset = day - 1;
+        // Exception for sundays
+        let offset = day === 0 ? 6 : day - 1;
         let offsetIncrementor = 0;
         for(let tableWeek = 0; tableWeek < 6; tableWeek++) {
             cellArray.push([]);
