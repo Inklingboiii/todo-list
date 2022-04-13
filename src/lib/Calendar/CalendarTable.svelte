@@ -6,19 +6,36 @@
     let cellArray = [];
     $: {
         cellArray = [];
-        let day = new Date(displayedYear, displayedDate.getMonth() + 1, 0);
-        let numberOfDaysInMonth = day.getDate();
-        day.setDate(1);
+        let numberOfDaysInMonth = getNumberOfDaysInMonth(displayedYear, displayedDate.getMonth());
+        let numberOfDaysInLastMonth = getNumberOfDaysInMonth(displayedYear, displayedDate.getMonth() - 1);
+        let day = new Date(displayedYear, displayedDate.getMonth(), 1);
         // Sunday - Saturday : 0 - 6
         day = day.getDay();
-        console.log(day)
+        let offset = day - 1;
+        let offsetIncrementor = 0;
         for(let tableWeek = 0; tableWeek < 6; tableWeek++) {
             cellArray.push([]);
+            // Add days of previous month
+            if(tableWeek === 0) {
+                    for(let i = 0; i < offset; i++) {
+                        cellArray[tableWeek][i] = numberOfDaysInLastMonth - offset + i + 1;
+                        console.log(tableWeek, i)
+                    }
+            }
             for(let tableDay = 0; tableDay < 7; tableDay++) {
-                let result = ((tableDay + tableWeek * 7) % numberOfDaysInMonth) + 1
-                cellArray[tableWeek][tableDay] = result;
+                if(tableWeek === 0 && tableDay < offset) {
+                    offsetIncrementor++
+                    continue;
+                }
+                // numofweeks * 7 + additional days - the incrementor for the days of the previous month and the modulus for the days of the next month and finally plus one since calendars are 1 indexed and arrays zero indexed
+                cellArray[tableWeek][tableDay] = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1;
             }
         }
+    }
+
+    // https://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript#answer-1185804
+    function getNumberOfDaysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
     }
 </script>
 
