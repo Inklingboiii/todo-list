@@ -1,5 +1,7 @@
 <script>
-    let displayedDate = new Date(new Date().setMonth(new Date().getMonth() + 1));
+    import CalendarCell from "./CalendarCell.svelte";
+
+    let displayedDate = new Date();
     // Change later to default for internation setting?
     $: displayedMonth =  displayedDate.toLocaleString('en', { month: 'long' });
     $: displayedYear =  displayedDate.getFullYear();
@@ -19,8 +21,7 @@
             // Add days of previous month
             if(tableWeek === 0) {
                     for(let i = 0; i < offset; i++) {
-                        cellArray[tableWeek][i] = numberOfDaysInLastMonth - offset + i + 1;
-                        console.log(tableWeek, i)
+                        cellArray[tableWeek][i] = {day: numberOfDaysInLastMonth - offset + i + 1, inMonth: false, isCurrentDay: false};
                     }
             }
             for(let tableDay = 0; tableDay < 7; tableDay++) {
@@ -29,9 +30,11 @@
                     continue;
                 }
                 // numofweeks * 7 + additional days - the incrementor for the days of the previous month and the modulus for the days of the next month and finally plus one since calendars are 1 indexed and arrays zero indexed
-                cellArray[tableWeek][tableDay] = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1;
+                let day = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1
+                cellArray[tableWeek][tableDay] = {day, inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth, isCurrentDay: false};
             }
         }
+        cellArray[Math.floor(displayedDate.getDate() / 7)][displayedDate.getDate() % 7 + offset - 1].isCurrentDay = true;
     }
 
     // https://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript#answer-1185804
@@ -58,7 +61,7 @@
         {#each cellArray as week}
         <tr>
             {#each week as cell}
-            <td>{cell}</td>
+            <CalendarCell {...cell}/>
             {/each}
         </tr>
         {/each}
@@ -68,6 +71,9 @@
 <style>
     table {
         margin-inline: auto;
-        min-width: 50%;
+        min-width: 80%;
+        border: solid 1px black;
+        border-collapse: collapse;
+        table-layout: fixed;
     }
 </style>

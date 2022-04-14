@@ -9,3 +9,9 @@
 <main>
     <CalendarTable />
 </main>
+
+<style>
+    main {
+        flex-grow: 2;
+    }
+</style>
