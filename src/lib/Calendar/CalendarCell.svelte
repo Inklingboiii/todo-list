@@ -2,8 +2,11 @@
     export let day;
     export let inMonth;
     export let isCurrentDay;
+    export let date;
 </script>
-<td class:not-in-month={!inMonth} class:current-day={isCurrentDay}>{day}</td>
+<td class:not-in-month={!inMonth} class:current-day={isCurrentDay}>
+    <h2>{day}</h2>
+</td>
 
 <style>
     td {

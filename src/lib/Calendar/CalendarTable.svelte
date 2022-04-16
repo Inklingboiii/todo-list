@@ -1,16 +1,27 @@
 <script>
+    import { setContext } from "svelte";
+    import { todosStore, inactiveTodosStore } from '$lib/todosStores'
+    import calendarStore from './CalendarStore';
     import CalendarCell from "./CalendarCell.svelte";
+
 
     let displayedDate = new Date();
     // Change later to default for internation setting?
     $: displayedMonth =  displayedDate.toLocaleString('en', { month: 'long' });
     $: displayedYear =  displayedDate.getFullYear();
-    let cellArray = [];
-    $: {
+    // Put in as parameter to make it reactive
+    $: cellArray = createCellArray(displayedDate);
+
+    $todosStore.map((todo) => {
+        
+    })
+    setContext('calendarData', calendarStore);
+
+    function createCellArray(date) {
         cellArray = [];
-        let numberOfDaysInMonth = getNumberOfDaysInMonth(displayedYear, displayedDate.getMonth());
-        let numberOfDaysInLastMonth = getNumberOfDaysInMonth(displayedYear, displayedDate.getMonth() - 1);
-        let day = new Date(displayedYear, displayedDate.getMonth(), 1);
+        let numberOfDaysInMonth = getNumberOfDaysInMonth(displayedYear, date.getMonth());
+        let numberOfDaysInLastMonth = getNumberOfDaysInMonth(displayedYear, date.getMonth() - 1);
+        let day = new Date(displayedYear, date.getMonth(), 1);
         // Sunday - Saturday : 0 - 6
         day = day.getDay();
         // Exception for sundays
@@ -34,7 +45,8 @@
                 cellArray[tableWeek][tableDay] = {day, inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth, isCurrentDay: false};
             }
         }
-        cellArray[Math.floor(displayedDate.getDate() / 7)][displayedDate.getDate() % 7 + offset - 1].isCurrentDay = true;
+        cellArray[Math.floor(date.getDate() / 7)][date.getDate() % 7 + offset - 1].isCurrentDay = true;
+        return cellArray;
     }
 
     // https://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript#answer-1185804
@@ -61,7 +73,7 @@
         {#each cellArray as week}
         <tr>
             {#each week as cell}
-            <CalendarCell {...cell}/>
+            <CalendarCell {...cell} date={displayedDate}/>
             {/each}
         </tr>
         {/each}
