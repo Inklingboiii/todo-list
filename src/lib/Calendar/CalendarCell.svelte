@@ -2,10 +2,13 @@
     export let day;
     export let inMonth;
     export let isCurrentDay;
-    export let date;
+    export let todos;
 </script>
 <td class:not-in-month={!inMonth} class:current-day={isCurrentDay}>
     <h2>{day}</h2>
+    {#each todos as todo}
+    <p>{todo.text}</p>
+    {/each}
 </td>
 
 <style>

@@ -1,21 +1,14 @@
 <script>
-    import { setContext } from "svelte";
     import { todosStore, inactiveTodosStore } from '$lib/todosStores'
-    import calendarStore from './CalendarStore';
     import CalendarCell from "./CalendarCell.svelte";
 
 
     let displayedDate = new Date();
     // Change later to default for internation setting?
-    $: displayedMonth =  displayedDate.toLocaleString('en', { month: 'long' });
-    $: displayedYear =  displayedDate.getFullYear();
+    $: displayedMonth = displayedDate.toLocaleString('en', { month: 'long' });
+    $: displayedYear = displayedDate.getFullYear();
     // Put in as parameter to make it reactive
     $: cellArray = createCellArray(displayedDate);
-
-    $todosStore.map((todo) => {
-        
-    })
-    setContext('calendarData', calendarStore);
 
     function createCellArray(date) {
         cellArray = [];
@@ -32,7 +25,12 @@
             // Add days of previous month
             if(tableWeek === 0) {
                     for(let i = 0; i < offset; i++) {
-                        cellArray[tableWeek][i] = {day: numberOfDaysInLastMonth - offset + i + 1, inMonth: false, isCurrentDay: false};
+                        cellArray[tableWeek][i] = {
+                            day: numberOfDaysInLastMonth - offset + i + 1,
+                            inMonth: false,
+                            isCurrentDay: false,
+                            todos: []
+                        };
                     }
             }
             for(let tableDay = 0; tableDay < 7; tableDay++) {
@@ -42,10 +40,24 @@
                 }
                 // numofweeks * 7 + additional days - the incrementor for the days of the previous month and the modulus for the days of the next month and finally plus one since calendars are 1 indexed and arrays zero indexed
                 let day = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1
-                cellArray[tableWeek][tableDay] = {day, inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth, isCurrentDay: false};
+                cellArray[tableWeek][tableDay] = {
+                    day,
+                    inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth,
+                    isCurrentDay: false,
+                    todos: []
+                };
             }
         }
-        cellArray[Math.floor(date.getDate() / 7)][date.getDate() % 7 + offset - 1].isCurrentDay = true;
+        // Get the week by dividing the day by 7 + offset and the day from its remainder + offset
+        cellArray[Math.floor((date.getDate() + offset - 1) / 7)][(date.getDate() + offset - 1) % 7].isCurrentDay = true;
+
+        // Loop through todos and assign them to a specific day
+        [...$todosStore, ...$inactiveTodosStore].map((todo) => {
+            let todoDate = new Date(todo.deadline);
+            if(todoDate.getFullYear() === displayedYear && todoDate.getMonth() === date.getMonth()) {
+                cellArray[Math.floor((todoDate.getDate() + offset - 1) / 7)][(todoDate.getDate() + offset - 1) % 7].todos.push(todo);
+            }
+        })
         return cellArray;
     }
 
