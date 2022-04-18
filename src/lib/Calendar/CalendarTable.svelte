@@ -67,8 +67,8 @@
     }
 </script>
 
-<table>
-    <caption>{displayedMonth} {displayedYear}</caption>
+<table role="grid">
+    <caption aria-live="polite">{displayedMonth} {displayedYear}</caption>
     <colgroup span="7"></colgroup>
     <thead>
         <tr>
