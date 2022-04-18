@@ -10,20 +10,36 @@
     $: displayedYear = displayedDate.getFullYear();
     $: cellArray = createCellArray(displayedDate, [...$todosStore, ...$inactiveTodosStore]);
 
+    function handleKeydown(event) {
+        console.log('B')
+        if(event.key === 'ArrowRight') {
+            // Add a day
+            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 1);
+        } else if(event.key === 'ArrowLeft') {
+            // Remove a day
+            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 1);
+        } else if(event.key === 'ArrowUp') {
+            // Remove a Week
+            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 7);
+        } else if(event.key === 'ArrowDown') {
+            // Add a Week
+            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 7);
+        }
+    }
+
 </script>
 
-<table role="grid">
-    <caption aria-live="polite">{displayedMonth} {displayedYear}</caption>
-    <colgroup span="7"></colgroup>
+<table role="grid" aria-readonly="true" aria-labelledby="caption" on:keydown={handleKeydown}>
+    <caption aria-live="polite" id="caption">{displayedMonth} {displayedYear}</caption>
     <thead>
         <tr>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+            <th scope="col">Saturday</th>
+            <th scope="col">Sunday</th>
           </tr>
     </thead>
     <tbody>
