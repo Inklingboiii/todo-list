@@ -2,8 +2,9 @@
     export let minimal;
     export let type;
     export let onClick;
+    export let id;
 </script>
-<button class:minimal class:animated={!minimal} {type} on:click={onClick}>
+<button class:minimal class:animated={!minimal} {type}  {id} on:click={onClick}>
     <slot></slot>
 </button>
 
