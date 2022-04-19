@@ -3,6 +3,10 @@
     export let inMonth;
     export let isCurrentDay;
     export let todos;
+
+    function focus(el) {
+        el.focus();
+    }
 </script>
 {#if isCurrentDay}
 <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true}>
@@ -10,6 +14,7 @@
     {#each todos as todo}
     <p>{todo.text}</p>
     {/each}
+    <button use:focus>Click</button>
 </td>
 {:else}
 <td tabindex="-1" class:not-in-month={!inMonth}>
@@ -17,6 +22,7 @@
     {#each todos as todo}
     <p>{todo.text}</p>
     {/each}
+    <button>Click</button>
 </td>
 {/if}
 
@@ -28,7 +34,7 @@
         cursor: pointer;
     }
 
-    td:focus {
+    td:focus-within {
         outline: 3px solid black;
     }
 

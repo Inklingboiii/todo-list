@@ -31,7 +31,7 @@ export default function createCellArray(date: Date, todos: [any]) {
             let day = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1
             cellArray[tableWeek][tableDay] = {
                 day,
-                inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth,
+                inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 <= numberOfDaysInLastMonth,
                 isCurrentDay: false,
                 todos: []
             };
