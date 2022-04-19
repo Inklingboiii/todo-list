@@ -24,6 +24,15 @@
         } else if(event.key === 'ArrowDown') {
             // Add a Week
             displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 7);
+        } else if(event.key === 'Home' || event.key === 'End') {
+            // Set to first day of week (Monday)
+            let currentDay = displayedDate.getDay();
+            // To counteract weeks starting with sundays
+            if(currentDay === 0) currentDay = 7;
+            // 1 === Monday
+            let distance = 1 - currentDay;
+            // Add 6 days if if end key pressed so it goes from monday to sunday
+            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + distance + (event.key === 'End' ? 6 : 0));
         }
     }
 
@@ -46,7 +55,7 @@
         {#each cellArray as week}
         <tr>
             {#each week as cell}
-            <CalendarCell {...cell} date={displayedDate}/>
+            <CalendarCell {...cell} />
             {/each}
         </tr>
         {/each}
