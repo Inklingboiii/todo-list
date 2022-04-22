@@ -31,6 +31,10 @@
                 // Add 6 days if if end key pressed so it goes from monday to sunday
                 return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + distance + (event.key === 'End' ? 6 : 0));
             }
+            // Remove a Month
+            case 'PageUp': return displayedDate = new Date(displayedYear, displayedDate.getMonth() - 1, displayedDate.getDate());
+            // Add a Month
+             case 'PageDown': return displayedDate = new Date(displayedYear, displayedDate.getMonth() + 1, displayedDate.getDate());
         }
     }
 
