@@ -11,28 +11,26 @@
     $: cellArray = createCellArray(displayedDate, [...$todosStore, ...$inactiveTodosStore]);
 
     function handleKeydown(event) {
-        console.log('B')
-        if(event.key === 'ArrowRight') {
+        switch(event.key) {
             // Add a day
-            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 1);
-        } else if(event.key === 'ArrowLeft') {
+            case 'ArrowRight': return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 1);
             // Remove a day
-            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 1);
-        } else if(event.key === 'ArrowUp') {
+            case 'ArrowLeft': return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 1);
             // Remove a Week
-            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 7);
-        } else if(event.key === 'ArrowDown') {
+            case 'ArrowUp': return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() - 7);
             // Add a Week
-            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 7);
-        } else if(event.key === 'Home' || event.key === 'End') {
-            // Set to first day of week (Monday)
-            let currentDay = displayedDate.getDay();
-            // To counteract weeks starting with sundays
-            if(currentDay === 0) currentDay = 7;
-            // 1 === Monday
-            let distance = 1 - currentDay;
-            // Add 6 days if if end key pressed so it goes from monday to sunday
-            displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + distance + (event.key === 'End' ? 6 : 0));
+            case 'ArrowDown': return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + 7);
+            case 'Home':
+            case 'End':  {
+                // Set to first day of week (Monday)
+                let currentDay = displayedDate.getDay();
+                // To counteract weeks starting with sundays
+                if(currentDay === 0) currentDay = 7;
+                // 1 === Monday
+                let distance = 1 - currentDay;
+                // Add 6 days if if end key pressed so it goes from monday to sunday
+                return displayedDate = new Date(displayedYear, displayedDate.getMonth(), displayedDate.getDate() + distance + (event.key === 'End' ? 6 : 0));
+            }
         }
     }
 
