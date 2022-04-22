@@ -3,7 +3,7 @@ export default function createCellArray(date: Date, todos: [any]) {
     let year = date.getFullYear();
     let month = date.getMonth();
     let numberOfDaysInMonth = getNumberOfDaysInMonth(year, month);
-    let numberOfDaysInLastMonth = getNumberOfDaysInMonth(year, month);
+    let numberOfDaysInLastMonth = getNumberOfDaysInMonth(year, month - 1);
     // Sunday - Saturday : 0 - 6
     let day = new Date(year, month).getDay();
     // Exception for sundays
@@ -29,9 +29,10 @@ export default function createCellArray(date: Date, todos: [any]) {
             }
             // numofweeks * 7 + additional days - the incrementor for the days of the previous month and the modulus for the days of the next month and finally plus one since calendars are 1 indexed and arrays zero indexed
             let day = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1
+            // console.log(day, ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth, ((tableDay + tableWeek * 7) - offsetIncrementor) + 1, numberOfDaysInLastMonth)
             cellArray[tableWeek][tableDay] = {
                 day,
-                inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 <= numberOfDaysInLastMonth,
+                inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) < numberOfDaysInMonth,
                 isCurrentDay: false,
                 todos: []
             };
