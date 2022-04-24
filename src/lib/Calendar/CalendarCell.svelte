@@ -1,9 +1,6 @@
 <script>
     export let day;
-    export let inMonth;
-    export let isCurrentDay;
     export let todos;
-    import CalendarCellContainer from './CalendarCellContainer.svelte';
     import DailyTodosIcon from '$lib/icons/DailyTodosIcon.svelte';
     import GoalIcon from '$lib/icons/GoalIcon.svelte';
 
@@ -12,10 +9,11 @@
     $: hasGoals = todos.some((todo) => !todo.today);
 </script>
 
-<CalendarCellContainer {isCurrentDay} {inMonth}>
     <h2>{day}</h2>
     {#each todos as todo}
-    <p>{todo.text}</p>
+        {#if !todo.today}
+            <p>{todo.text}</p>
+        {/if}
     {/each}
     {#if hasDailyTodos}
         <DailyTodosIcon />
@@ -23,5 +21,4 @@
     {#if hasGoals}
         <GoalIcon />
     {/if}
-</CalendarCellContainer>
 

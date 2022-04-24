@@ -1,16 +1,29 @@
 <script>
     export let isCurrentDay;
     export let inMonth;
+    export let day;
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     const focus = el => el.focus();
-    console.log(isCurrentDay, inMonth)
+
+    function handleClick() {
+        updateDate();
+    }
+
+    function updateDate() {
+        dispatch('dateupdate', {
+			day,
+            inMonth
+		});
+    }
 </script>
 
 {#if isCurrentDay}
-    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus>
+    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick}>
         <slot></slot>
     </td>
 {:else}
-    <td tabindex="-1" class:not-in-month={!inMonth}>
+    <td tabindex="-1" class:not-in-month={!inMonth} on:click={handleClick}>
         <slot></slot>
     </td>
 {/if}

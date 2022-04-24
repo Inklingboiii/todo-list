@@ -1,4 +1,5 @@
 <script>
+    import CalendarCellContainer from './CalendarCellContainer.svelte';
     import { todosStore, inactiveTodosStore } from '$lib/todosStores'
     import CalendarCell from "./CalendarCell.svelte";
     import createCellArray from './createCellArray';
@@ -38,6 +39,17 @@
         }
     }
 
+    function handleDateUpdate(event) {
+        let {inMonth, day} = event.detail;
+        if(inMonth) displayedDate = new Date(displayedYear, displayedDate.getMonth(), day);
+        else {
+            // From last month
+            if(day < 15) displayedDate = new Date(displayedYear, displayedDate.getMonth() - 1, day);
+            // From next month
+            else displayedDate = new Date(displayedYear, displayedDate.getMonth() + 1, day)
+        }
+    }
+
 </script>
 
 <table role="grid" aria-readonly="true" aria-labelledby="caption" on:keydown={handleKeydown}>
@@ -57,7 +69,9 @@
         {#each cellArray as week}
         <tr>
             {#each week as cell}
-            <CalendarCell {...cell} />
+            <CalendarCellContainer isCurrentDay={cell.isCurrentDay} day={cell.day} inMonth ={cell.inMonth} on:dateupdate={handleDateUpdate}>
+                <CalendarCell day={cell.day} todos={cell.todos} />
+            </CalendarCellContainer>
             {/each}
         </tr>
         {/each}

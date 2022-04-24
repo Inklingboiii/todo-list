@@ -20,6 +20,7 @@ type InactiveTodos = Array<InactiveTodo>;
 const todos: Todos = [
 	{text: 'example test', today: true, deadline: new Date(new Date(new Date().setHours(new Date().getHours() + 1)).setSeconds(new Date().getSeconds() + 10)).getTime(), id: uuid()},
 	{text: 'example test 2', today: true, deadline: new Date(new Date().setSeconds(new Date().getSeconds() + 120)).getTime(), id: uuid()},
+	{text: 'example goal for today', today: false, deadline: new Date().getTime(), id: uuid()},
 	{text: 'example goal 1', today: false, deadline: new Date(new Date(new Date().setHours(new Date().getHours() + 24)).setSeconds(new Date().getSeconds() + 10)).getTime(), id: uuid()},
 	{text: 'example goal 2', today: false, deadline: new Date(new Date().setMonth(new Date().getMonth() + 1)).getTime(), id: uuid()},
 
