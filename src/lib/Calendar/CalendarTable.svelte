@@ -44,7 +44,7 @@
         if(inMonth) displayedDate = new Date(displayedYear, displayedDate.getMonth(), day);
         else {
             // From last month
-            if(day < 15) displayedDate = new Date(displayedYear, displayedDate.getMonth() - 1, day);
+            if(day > 15) displayedDate = new Date(displayedYear, displayedDate.getMonth() - 1, day);
             // From next month
             else displayedDate = new Date(displayedYear, displayedDate.getMonth() + 1, day)
         }
