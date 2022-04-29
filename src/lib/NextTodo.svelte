@@ -1,7 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-    import { todosStore, sortTodosByDeadline } from '$lib/todosStores';
+    import { todosStore, sortTodosByDeadline, expireTodo } from '$lib/todosStores';
     $: nextTodo = sortTodosByDeadline($todosStore.filter((todo) => !todo.today))[0];
+    $: console.log(nextTodo)
     $: deadline = new Intl.DateTimeFormat('default', {
           hour: 'numeric',
           year: 'numeric',

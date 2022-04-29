@@ -8,6 +8,7 @@
 
     function handleClick() {
         updateDate();
+        console.log(day)
     }
 
     function updateDate() {
