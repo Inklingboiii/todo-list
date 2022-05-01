@@ -1,5 +1,5 @@
 <script>
-    export let closeEditModal;
+    export let closeModal;
     import { fly } from 'svelte/transition';
     let firstTabElement;
     let lastTabElement;
@@ -12,7 +12,7 @@
 
 
     function handleKeydown(event) {
-        if(event.key === 'Escape') closeEditModal();
+        if(event.key === 'Escape') closeModal();
         trapTabKey(event);
     }
 
@@ -42,7 +42,7 @@
     <slot></slot>
 </div>
 <!-- Used as tint and to close modal on focusout -->
-<div class="overlay" on:click={closeEditModal}></div>
+<div class="overlay" on:click={closeModal}></div>
 
 <style>
     div[role="dialog"] {

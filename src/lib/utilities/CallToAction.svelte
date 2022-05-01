@@ -1,8 +1,9 @@
 <script>
     export let href;
+    export let id;
 </script>
 
-<a href={href}>
+<a {href} {id}>
     <slot></slot>
 </a>
 

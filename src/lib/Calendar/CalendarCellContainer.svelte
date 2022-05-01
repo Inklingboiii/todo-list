@@ -2,13 +2,18 @@
     export let isCurrentDay;
     export let inMonth;
     export let day;
+    export let todos;
     import { createEventDispatcher } from 'svelte';
+    import CalendarModal from './CalendarModal.svelte';
+    let isClicked = false;
     const dispatch = createEventDispatcher();
     const focus = el => el.focus();
 
     function handleClick() {
+        console.log('click handled')
         updateDate();
-        console.log(day)
+        // Show modal if current day is clicked
+        if(isCurrentDay) isClicked = true;
     }
 
     function updateDate() {
@@ -17,11 +22,20 @@
             inMonth
 		});
     }
+
+    function closeModal(event) {
+        isClicked = false;
+        // Makes it so handleClick doesnt get executed and opens the modal again
+        event.stopPropagation();
+    }
 </script>
 
 {#if isCurrentDay}
     <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick}>
         <slot></slot>
+        {#if isClicked}
+            <CalendarModal {closeModal} {day} {todos}/>
+        {/if}
     </td>
 {:else}
     <td tabindex="-1" class:not-in-month={!inMonth} on:click={handleClick}>

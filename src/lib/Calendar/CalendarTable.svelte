@@ -69,7 +69,7 @@
         {#each cellArray as week}
         <tr>
             {#each week as cell}
-            <CalendarCellContainer isCurrentDay={cell.isCurrentDay} day={cell.day} inMonth ={cell.inMonth} on:dateupdate={handleDateUpdate}>
+            <CalendarCellContainer isCurrentDay={cell.isCurrentDay} day={cell.day} inMonth={cell.inMonth} todos={cell.todos} on:dateupdate={handleDateUpdate}>
                 <CalendarCell day={cell.day} todos={cell.todos} />
             </CalendarCellContainer>
             {/each}

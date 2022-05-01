@@ -13,7 +13,7 @@
     }
 
 </script>
-<Modal {closeEditModal}>
+<Modal closeModal={closeEditModal}>
     <h3 id="heading" >Edit Todo</h3>
     <form on:submit|preventDefault={handleSubmit}>
         <input bind:value={inputValue} id="first">
