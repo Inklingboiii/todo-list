@@ -9,10 +9,14 @@
 </script>
 
 <Modal {closeModal}>
-    <h3 id="heading">{day}</h3>
-    {#each todos as todo}
-        <p>{todo.text}</p>
-    {/each}
-    <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
-    <Button minimal type="button" onClick={closeModal} id="last">Close</Button>
+    <article>
+        <h3 id="heading">{day}</h3>
+        {#each todos as todo}
+            <p>{todo.text}</p>
+        {/each}
+        <div>
+            <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
+            <Button minimal type="button" onClick={closeModal} id="last">Close</Button>
+        </div>
+    </article>
 </Modal>

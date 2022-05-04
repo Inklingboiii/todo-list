@@ -29,7 +29,6 @@ export default function createCellArray(date: Date, todos: [any]) {
             }
             // numofweeks * 7 + additional days - the incrementor for the days of the previous month and the modulus for the days of the next month and finally plus one since calendars are 1 indexed and arrays zero indexed
             let day = (((tableDay + tableWeek * 7) - offsetIncrementor) % numberOfDaysInMonth) + 1
-            // console.log(day, ((tableDay + tableWeek * 7) - offsetIncrementor) + 1 < numberOfDaysInLastMonth, ((tableDay + tableWeek * 7) - offsetIncrementor) + 1, numberOfDaysInLastMonth)
             cellArray[tableWeek][tableDay] = {
                 day,
                 inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) < numberOfDaysInMonth,

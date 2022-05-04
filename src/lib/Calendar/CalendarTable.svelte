@@ -70,7 +70,7 @@
         <tr>
             {#each week as cell}
             <CalendarCellContainer isCurrentDay={cell.isCurrentDay} day={cell.day} inMonth={cell.inMonth} todos={cell.todos} on:dateupdate={handleDateUpdate}>
-                <CalendarCell day={cell.day} todos={cell.todos} />
+                <CalendarCell day={cell.day} todos={cell.todos} isCurrentDay={cell.isCurrentDay} />
             </CalendarCellContainer>
             {/each}
         </tr>
