@@ -1,4 +1,6 @@
 <script>
+    import { setContext, getContext } from 'svelte';
+    import calendarStore from './calendarStore.ts';
     import CalendarCellContainer from './CalendarCellContainer.svelte';
     import { todosStore, inactiveTodosStore } from '$lib/todosStores'
     import CalendarCell from "./CalendarCell.svelte";
@@ -10,6 +12,8 @@
     $: displayedMonth = displayedDate.toLocaleString('en', { month: 'long' });
     $: displayedYear = displayedDate.getFullYear();
     $: cellArray = createCellArray(displayedDate, [...$todosStore, ...$inactiveTodosStore]);
+    $: calendarStore.set(cellArray.flat());
+    setContext('calendar', calendarStore);
 
     function handleKeydown(event) {
         switch(event.key) {
@@ -40,6 +44,7 @@
     }
 
     function handleDateUpdate(event) {
+        console.log('update')
         let {inMonth, day} = event.detail;
         if(inMonth) displayedDate = new Date(displayedYear, displayedDate.getMonth(), day);
         else {
@@ -66,11 +71,11 @@
           </tr>
     </thead>
     <tbody>
-        {#each cellArray as week}
+        {#each cellArray as week, numWeek}
         <tr>
-            {#each week as cell}
-            <CalendarCellContainer isCurrentDay={cell.isCurrentDay} day={cell.day} inMonth={cell.inMonth} todos={cell.todos} on:dateupdate={handleDateUpdate}>
-                <CalendarCell day={cell.day} todos={cell.todos} isCurrentDay={cell.isCurrentDay} />
+            {#each week as cell, numDay}
+            <CalendarCellContainer index={numWeek * 7 + numDay} on:dateupdate={handleDateUpdate}>
+                <CalendarCell index={numWeek * 7 + numDay} />
             </CalendarCellContainer>
             {/each}
         </tr>

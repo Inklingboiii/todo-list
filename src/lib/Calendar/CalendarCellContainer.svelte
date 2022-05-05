@@ -1,13 +1,12 @@
 <script>
-    export let isCurrentDay;
-    export let inMonth;
-    export let day;
-    export let todos;
-    import { createEventDispatcher } from 'svelte';
+    export let index
+    import { createEventDispatcher, getContext } from 'svelte';
     import CalendarModal from './CalendarModal.svelte';
     let isClicked = false;
     const dispatch = createEventDispatcher();
     const focus = el => el.focus();
+    const context = getContext('calendar');
+    $: ({ isCurrentDay, inMonth, day, todos } = $context[index]);
 
     function handleClick() {
         console.log('click handled')
@@ -29,7 +28,6 @@
         event.stopPropagation();
     }
 </script>
-
 {#if isCurrentDay}
     <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick}>
         <slot></slot>

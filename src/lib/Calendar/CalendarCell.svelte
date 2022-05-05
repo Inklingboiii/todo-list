@@ -1,9 +1,12 @@
 <script>
-    export let day;
-    export let todos;
+    export let index;
+    import { getContext } from 'svelte';
     import DailyTodosIcon from '$lib/icons/DailyTodosIcon.svelte';
     import GoalIcon from '$lib/icons/GoalIcon.svelte';
 
+    const context = getContext('calendar');
+    // https://daveceddia.com/svelte-reactive-destructuring/
+    $: ({ day, todos, isCurrentDay } = $context[index]);
     // Check for succeeded, so it only checks for active todos
     $: hasDailyTodos = todos.some((todo) => todo.today && todo.succeeded === undefined);
     $: hasGoals = todos.some((todo) => !todo.today);
