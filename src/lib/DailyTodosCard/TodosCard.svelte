@@ -15,7 +15,7 @@
 	{:else}
 		<p>No todos added</p>
 	{/if}
-	<CallToAction id="add-todos" href="/add-todos">Add {dailyTodos.length ? 'more' : ''} todos</CallToAction>
+	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} todos</CallToAction>
 </article>
 
 <style>

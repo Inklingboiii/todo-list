@@ -1,6 +1,6 @@
 <script>
     export let href;
-    export let id;
+    export let id = null;
 </script>
 
 <a {href} {id}>
