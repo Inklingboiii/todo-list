@@ -17,6 +17,7 @@
     }
 
     blockquote {
+        position: relative;
         font-size: var(--font-500);
     }
 
@@ -30,10 +31,12 @@
     }
     blockquote::before {
         content: open-quote;
+        left: -.5em;
     }
 
     blockquote::after {
         content: close-quote;
+        right: -.5em;
     }
 
     figcaption {

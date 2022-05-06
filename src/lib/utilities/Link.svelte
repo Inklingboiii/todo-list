@@ -1,6 +1,6 @@
 <script>
     export let href;
-    export let newTab;
+    export let newTab = false;
 </script>
 
 <a href={href} target={newTab ? '_blank' : null}>
