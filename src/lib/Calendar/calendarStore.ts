@@ -2,8 +2,9 @@ import { writable, Writable, get } from 'svelte/store';
 type Cell = {
 	day: number,
 	inMonth: boolean,
+	isSelectedDay: boolean,
 	isCurrentDay: boolean,
-	todos: Array<any>
+	todos: Array<any>,
 }
 
 const calendarStore: Writable<Array<Cell>> = writable([]);

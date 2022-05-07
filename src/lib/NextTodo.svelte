@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     import { todosStore, sortTodosByDeadline, expireTodo } from '$lib/todosStores';
     $: nextTodo = sortTodosByDeadline($todosStore.filter((todo) => !todo.today))[0];
-    $: console.log(nextTodo)
     $: deadline = new Intl.DateTimeFormat('default', {
           hour: 'numeric',
           year: 'numeric',
@@ -10,8 +9,8 @@
           day: 'numeric',
           minute: 'numeric',
         }).format(nextTodo.deadline);
-    let currentTime = Date.now();
     const lateLimit = 1000 * 60 * 60 * 24 // A day
+    let currentTime = new Date()
 
     onMount(() => {
         let deadlineInterval = setInterval(() => {
