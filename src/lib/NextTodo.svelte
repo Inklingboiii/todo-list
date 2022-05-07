@@ -1,6 +1,9 @@
 <script>
-    import { onMount } from 'svelte';
     import { todosStore, sortTodosByDeadline, expireTodo } from '$lib/todosStores';
+    import currentTime from '$lib/utilities/currentTimeStore';
+import { onMount } from 'svelte';
+    const lateLimit = 1000 * 60 * 60 * 24 // A day
+
     $: nextTodo = sortTodosByDeadline($todosStore.filter((todo) => !todo.today))[0];
     $: deadline = new Intl.DateTimeFormat('default', {
           hour: 'numeric',
@@ -9,26 +12,16 @@
           day: 'numeric',
           minute: 'numeric',
         }).format(nextTodo.deadline);
-    const lateLimit = 1000 * 60 * 60 * 24 // A day
-    let currentTime = new Date()
-
-    onMount(() => {
-        let deadlineInterval = setInterval(() => {
-            // console.log(nextTodo.deadline - currentTime, lateLimit)
-            currentTime = Date.now();
-            // Check if todo expired
-            if(nextTodo.deadline <= currentTime) {
-                clearInterval(deadlineInterval);
-                expireTodo(nextTodo, false);
-            }
-        }, 1000)
-    });
+        onMount(() => checkIfCanBeExpired(nextTodo))
+        function checkIfCanBeExpired(todo) {
+            if(todo.deadline <= $currentTime) expireTodo(todo, false);
+        }
 </script>
 
 <article>
     <h2>Next long term goal</h2>
     <p>{nextTodo.text}</p>
-    <time class:late={nextTodo.deadline - lateLimit < currentTime }>
+    <time class:late={nextTodo.deadline - lateLimit < $currentTime }>
         {deadline}
     </time>
 </article>

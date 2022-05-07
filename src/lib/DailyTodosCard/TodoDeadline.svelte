@@ -1,22 +1,13 @@
 <script>
     export let todo;
-    import { onMount } from 'svelte';
     import { expireTodo } from '$lib/todosStores';
-    let currentTime = Date.now();
+    import currentTime from '$lib/utilities/currentTimeStore';
+    //let currentTime = Date.now();
     const lateLimit = 1000 * 60 * 60; // 1 hour
-    $: remainingTimeInMs = todo.deadline - currentTime;
+    $: remainingTimeInMs = todo.deadline - $currentTime;
     $: remainingTime = humanReadableDuration(remainingTimeInMs);
 
-    onMount(() => {
-        let deadlineInterval = setInterval(() => {
-            currentTime = Date.now();
-            // Check if todo expired
-            if(todo.deadline <= currentTime) {
-                clearInterval(deadlineInterval);
-                expireTodo(todo, false);
-            }
-        }, 1000)
-    });
+    $: if(todo.deadline <= $currentTime) expireTodo(todo, false);
 
 
     // https://stackoverflow.com/a/65677584/13864145
