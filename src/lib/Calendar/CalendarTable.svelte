@@ -1,5 +1,6 @@
 <script>
     import { setContext } from 'svelte';
+    import currentTime from '$lib/utilities/currentTimeStore';
     import calendarStore from './calendarStore.ts';
     import CalendarCellContainer from './CalendarCellContainer.svelte';
     import { todosStore, inactiveTodosStore } from '$lib/todosStores'
@@ -12,8 +13,18 @@
     $: displayedMonth = displayedDate.toLocaleString('en', { month: 'long' });
     $: displayedYear = displayedDate.getFullYear();
     $: cellArray = createCellArray(displayedDate, [...$todosStore, ...$inactiveTodosStore]);
+    $: setCurrentDayInCalendar(cellArray, new Date($currentTime))
     $: calendarStore.set(cellArray.flat());
     setContext('calendar', calendarStore);
+
+    function setCurrentDayInCalendar(cellArray, currentDate) {
+        if(currentDate.getFullYear() !== displayedYear) return;
+        if(currentDate.getMonth() !== displayedDate.getMonth()) return;
+        let day = new Date(currentDate.getFullYear(), currentDate.getMonth()).getDay();
+        // Exception for sundays
+        let offset = day === 0 ? 6 : day - 1;
+        cellArray[Math.floor((currentDate.getDate() + offset - 1) / 7)][(currentDate.getDate() + offset - 1) % 7].isCurrentDay = true;
+    }
 
     function handleKeydown(event) {
         switch(event.key) {

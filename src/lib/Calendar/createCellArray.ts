@@ -18,6 +18,7 @@ export default function createCellArray(date: Date, todos: [any]) {
                         day: numberOfDaysInLastMonth - offset + i + 1,
                         inMonth: false,
                         isSelectedDay: false,
+                        isCurrentDay: false,
                         todos: []
                     };
                 }
@@ -33,6 +34,7 @@ export default function createCellArray(date: Date, todos: [any]) {
                 day,
                 inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) < numberOfDaysInMonth,
                 isSelectedDay: false,
+                isCurrentDay: false,
                 todos: []
             };
         }
