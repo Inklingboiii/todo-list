@@ -17,7 +17,7 @@ export default function createCellArray(date: Date, todos: [any]) {
                     cellArray[tableWeek][i] = {
                         day: numberOfDaysInLastMonth - offset + i + 1,
                         inMonth: false,
-                        isSelectedDay: false,
+                        isCurrentDay: false,
                         todos: []
                     };
                 }
@@ -32,13 +32,13 @@ export default function createCellArray(date: Date, todos: [any]) {
             cellArray[tableWeek][tableDay] = {
                 day,
                 inMonth: ((tableDay + tableWeek * 7) - offsetIncrementor) < numberOfDaysInMonth,
-                isSelectedDay: false,
+                isCurrentDay: false,
                 todos: []
             };
         }
     }
     // Get the week by dividing the day by 7 + offset and the day from its remainder + offset
-    cellArray[Math.floor((date.getDate() + offset - 1) / 7)][(date.getDate() + offset - 1) % 7].isSelectedDay = true;
+    cellArray[Math.floor((date.getDate() + offset - 1) / 7)][(date.getDate() + offset - 1) % 7].isCurrentDay = true;
 
     // Loop through todos and assign them to a specific day
     todos.map((todo) => {

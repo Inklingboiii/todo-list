@@ -6,13 +6,13 @@
     const dispatch = createEventDispatcher();
     const focus = el => el.focus();
     const context = getContext('calendar');
-    $: ({ isSelectedDay, inMonth, day, todos } = $context[index]);
+    $: ({ isCurrentDay, inMonth, day, todos } = $context[index]);
 
     function handleClick() {
         console.log('click handled')
         updateDate();
         // Show modal if current day is clicked
-        if(isSelectedDay) isClicked = true;
+        if(isCurrentDay) isClicked = true;
     }
 
     function updateDate() {
@@ -28,7 +28,7 @@
         event.stopPropagation();
     }
 </script>
-{#if isSelectedDay}
+{#if isCurrentDay}
     <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick}>
         <slot></slot>
         {#if isClicked}
