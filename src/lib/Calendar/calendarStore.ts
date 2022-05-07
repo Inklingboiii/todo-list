@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store';
+import { writable, Writable, get } from 'svelte/store';
 type Cell = {
 	day: number,
 	inMonth: boolean,
@@ -6,6 +6,6 @@ type Cell = {
 	todos: Array<any>
 }
 
-const calendarStore = new writable([]);
+const calendarStore: Writable<Array<Cell>> = writable([]);
 
 export default calendarStore;
