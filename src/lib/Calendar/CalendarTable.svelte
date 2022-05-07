@@ -1,5 +1,5 @@
 <script>
-    import { setContext, getContext } from 'svelte';
+    import { setContext } from 'svelte';
     import calendarStore from './calendarStore.ts';
     import CalendarCellContainer from './CalendarCellContainer.svelte';
     import { todosStore, inactiveTodosStore } from '$lib/todosStores'
