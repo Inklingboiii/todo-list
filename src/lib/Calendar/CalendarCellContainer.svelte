@@ -2,8 +2,10 @@
     export let index
     import { createEventDispatcher, getContext } from 'svelte';
     import CalendarModal from './CalendarModal.svelte';
+
     let isClicked = false;
     const dispatch = createEventDispatcher();
+    let currentContainer;
     const focus = el => el.focus();
     const context = getContext('calendar');
     $: ({ isSelectedDay, inMonth, day, todos } = $context[index]);
@@ -26,10 +28,11 @@
         isClicked = false;
         // Makes it so handleClick doesnt get executed and opens the modal again
         event.stopPropagation();
+        currentContainer.focus();
     }
 </script>
 {#if isSelectedDay}
-    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick}>
+    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick} bind:this={currentContainer}>
         <slot></slot>
         {#if isClicked}
             <CalendarModal {closeModal} {day} {todos}/>

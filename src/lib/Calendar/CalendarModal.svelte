@@ -5,7 +5,6 @@
     export let closeModal;
     export let day;
     export let todos;
-    console.log(todos)
 </script>
 
 <Modal {closeModal}>
