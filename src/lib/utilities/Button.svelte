@@ -1,7 +1,7 @@
 <script>
-    export let minimal;
-    export let type;
-    export let onClick;
+    export let minimal = false;
+    export let type = null;
+    export let onClick = null;
     export let id = null;
 </script>
 <button class:minimal class:animated={!minimal} {type} {id} on:click={onClick}>

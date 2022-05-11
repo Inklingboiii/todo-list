@@ -1,7 +1,7 @@
 <script>
-    export let text;
+    export let text = null;
     export let name;
-    export let required;
+    export let required = false;
 </script>
 
 <div>

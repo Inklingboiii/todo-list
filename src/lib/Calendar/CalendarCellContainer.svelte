@@ -51,7 +51,8 @@
         cursor: pointer;
     }
 
-    td:hover {
+    td:hover,
+    td:focus {
         outline: 3px solid black;
     }
 
