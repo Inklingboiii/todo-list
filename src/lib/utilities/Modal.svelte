@@ -37,8 +37,8 @@
         }
     }
 </script>
-
-<div role="dialog" aria-modal="true" aria-labelledby="heading" on:keydown={handleKeydown} use:modal transition:fly={{y: 500, duration: 300}}>
+<!-- Disable keyboard movement while modal is open -->
+<div role="dialog" aria-modal="true" aria-labelledby="heading" on:keydown|stopPropagation={handleKeydown} use:modal transition:fly={{y: 500, duration: 300}}>
     <slot></slot>
 </div>
 <!-- Used as tint and to close modal on focusout -->

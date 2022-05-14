@@ -11,10 +11,17 @@
     $: ({ isSelectedDay, inMonth, day, todos } = $context[index]);
 
     function handleClick() {
-        console.log('click handled')
+        console.log('click')
         updateDate();
         // Show modal if current day is clicked
         if(isSelectedDay) isClicked = true;
+    }
+
+    function handleKeyDown(event) {
+        if(event.key !== 'Enter') return;
+        console.log('enter')
+        event.preventDefault();
+        isClicked = true;
     }
 
     function updateDate() {
@@ -27,12 +34,12 @@
     function closeModal(event) {
         isClicked = false;
         // Makes it so handleClick doesnt get executed and opens the modal again
-        event.stopPropagation();
+        if(event !== undefined) event.stopPropagation();
         currentContainer.focus();
     }
 </script>
 {#if isSelectedDay}
-    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick} bind:this={currentContainer}>
+    <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick} on:keydown|self={handleKeyDown} bind:this={currentContainer}>
         <slot></slot>
         {#if isClicked}
             <CalendarModal {closeModal} {day} {todos}/>
