@@ -1,10 +1,14 @@
 <script>
 	import TodoForm from '$lib/TodoForm.svelte';
+	import MainHeading from '$lib/utilities/MainHeading.svelte';
 </script>
 
 <svelte:head>
 	<title>Add todo</title>
 </svelte:head>
+<header>
+    <MainHeading>Add todo</MainHeading>
+</header>
 <main>
 	<TodoForm />
 </main>
