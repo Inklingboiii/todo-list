@@ -5,11 +5,13 @@
     export let closeModal;
     export let day;
     export let todos;
+    export let month;
+    export let year;
 </script>
 
 <Modal {closeModal}>
     <article>
-        <h3 id="heading">{day}</h3>
+        <h3 id="heading">{day} {month} {year}</h3>
         {#each todos as todo}
             <p>{todo.text}</p>
         {/each}

@@ -6,7 +6,7 @@
 
     const context = getContext('calendar');
     // https://daveceddia.com/svelte-reactive-destructuring/
-    $: ({ day, todos, isCurrentDay, isSelectedDay } = $context[index]);
+    $: ({ day, todos, isCurrentDay } = $context[index]);
     // Check for succeeded, so it only checks for active todos
     $: hasDailyTodos = todos.some((todo) => todo.today && todo.succeeded === undefined);
     $: hasGoals = todos.some((todo) => !todo.today);

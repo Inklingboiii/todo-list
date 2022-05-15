@@ -1,5 +1,7 @@
 <script>
-    export let index
+    export let index;
+    export let month;
+    export let year;
     import { createEventDispatcher, getContext } from 'svelte';
     import CalendarModal from './CalendarModal.svelte';
 
@@ -42,7 +44,7 @@
     <td tabindex="0"  class="current-day" role="gridcell" aria-selected={true} use:focus on:click={handleClick} on:keydown|self={handleKeyDown} bind:this={currentContainer}>
         <slot></slot>
         {#if isClicked}
-            <CalendarModal {closeModal} {day} {todos}/>
+            <CalendarModal {closeModal} {day} {todos} {month} {year} />
         {/if}
     </td>
 {:else}

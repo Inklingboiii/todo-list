@@ -85,7 +85,7 @@
         {#each cellArray as week, numWeek}
         <tr>
             {#each week as cell, numDay}
-            <CalendarCellContainer index={numWeek * 7 + numDay} on:dateupdate={handleDateUpdate}>
+            <CalendarCellContainer index={numWeek * 7 + numDay} month={displayedMonth} year={displayedYear} on:dateupdate={handleDateUpdate}>
                 <CalendarCell index={numWeek * 7 + numDay} />
             </CalendarCellContainer>
             {/each}

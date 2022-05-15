@@ -1,4 +1,4 @@
-import { writable, Writable, get } from 'svelte/store';
+import { writable, Writable } from 'svelte/store';
 type Cell = {
 	day: number,
 	inMonth: boolean,
