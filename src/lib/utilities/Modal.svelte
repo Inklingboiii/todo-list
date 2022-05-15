@@ -51,7 +51,6 @@
         width: fit-content;
         height: fit-content;
         padding: 1em;
-        padding: 1em;
         margin: auto;
         background: white;
         color: black;
