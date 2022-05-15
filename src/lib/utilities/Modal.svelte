@@ -48,8 +48,9 @@
     div[role="dialog"] {
         position: fixed;
         inset: 0;
-        max-height: calc(10% + 5rem);
-        max-width: calc(30% + 5rem);
+        width: fit-content;
+        height: fit-content;
+        padding: 1em;
         padding: 1em;
         margin: auto;
         background: white;

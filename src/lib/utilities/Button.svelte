@@ -12,6 +12,9 @@
     button {
         cursor: pointer;
         background-color: transparent;
+        min-width: 10ch;
+        /** For accessibility https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
+        min-height: 44px;
     }
 
     /* Animated version */

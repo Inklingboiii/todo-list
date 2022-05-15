@@ -11,6 +11,8 @@
     a {
         text-decoration: none;
         text-align: center;
+        min-width: 10ch;
+        min-height: 44px;
         background-color: var(--color-primary);
         color: black;
         padding: 1em;
