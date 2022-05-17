@@ -50,11 +50,14 @@
         inset: 0;
         width: fit-content;
         height: fit-content;
-        padding: 1em;
+        padding: 2em 2.5em;
         margin: auto;
         background: white;
         color: black;
         z-index: 10;
+        border-radius: 95% 5% 99% 1% / 1% 95% 5% 99%;
+        box-shadow: 0px 0px 0.5em 0.5em var(--color-gray);
+        cursor: initial;
     }
 
    .overlay {

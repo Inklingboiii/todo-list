@@ -20,7 +20,15 @@
                 {#if dailyTodos.length > 0}
                     <ul>
                         {#each dailyTodos as todo}
-                            <li>{todo.text}</li>
+                            <li>
+                                {#if todo.succeeded === false}
+                                    <s>{todo.text}</s>
+                                {:else if todo.succeeded === true}
+                                    {todo.text} 🗹
+                                {:else}
+                                    {todo.text}
+                                {/if}
+                            </li>
                         {/each}
                     </ul>
                 {:else}
@@ -54,12 +62,16 @@
         flex-direction: column;
         gap: 1em;
         text-align: start;
-        cursor: initial;
+    }
+
+    #heading {
+        text-align: center;
     }
 
     .todos {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 1em;
     }
     
