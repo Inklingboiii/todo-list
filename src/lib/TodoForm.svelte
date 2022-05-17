@@ -1,17 +1,18 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { addTodo } from '$lib/todosStores.ts';
-	import { nanoid as uuid } from 'nanoid'
+	import { nanoid as uuid } from 'nanoid';
+	import currentTime from '$lib/utilities/currentTimeStore';
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
 	import Button from '$lib/utilities/Button.svelte';
 	let today = true
 	let text;
 	let deadline;
-	let min = formatDate(new Date());
+	$: min = formatDate(new Date($currentTime));
 	let max = null;
 	$: {
 		if(today) {
-			max = new Date();
+			max = new Date($currentTime);
 			max.setDate(new Date().getDate() + 1)
 			max.setHours(0, 0, 0);
 			max = formatDate(max);
@@ -28,7 +29,6 @@
 	}
 
 	function handleSubmit() {
-		console.log('b', new Date(deadline));
 		let todo = {
 			text,
 			today,
@@ -55,7 +55,10 @@
 		<input type="radio" name="timespan" value={false} bind:group={today}>
 		</label>
 	</fieldset>
-	<input bind:value={deadline} type="datetime-local" {min} {max} required>
+	<label>
+		Deadline
+		<input bind:value={deadline} type="datetime-local" {min} {max} required>
+	</label>
 
 	<Button>Save</Button>
 </form>
@@ -66,6 +69,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: space-around;
+		gap: 1em;
 		min-height: 50vh;
 		background-color: var(--color-dark);
 		color: white;
