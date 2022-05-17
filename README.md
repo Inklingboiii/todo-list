@@ -8,3 +8,4 @@
 - []  add missing label to deadline in add todos
 - [x]  add heading in add todos
 - [x]  add title to calendar page and various meta data
+- [ ]  make it possible to complete long term goals
