@@ -4,8 +4,8 @@
 	import DailyTodo from '$lib/DailyTodosCard/DailyTodo.svelte';
 	import CallToAction from '$lib/utilities/CallToAction.svelte';
 </script>
-<article>
-	<h2>Daily todos</h2>
+<section aria-labelledby="heading">
+	<h2 id="heading">Daily todos</h2>
 	{#if dailyTodos.length}
 		<ul>
 			{#each dailyTodos as dailyTodo (dailyTodo.id)}
@@ -16,10 +16,10 @@
 		<p>No todos added</p>
 	{/if}
 	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} todos</CallToAction>
-</article>
+</section>
 
 <style>
-	article {
+	section {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
@@ -33,7 +33,7 @@
 	}
 
 	@media (min-width: 50em) {
-		article {
+		section {
 			margin: 0;
 		}
 	}

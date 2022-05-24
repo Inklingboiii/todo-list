@@ -1,11 +1,16 @@
 <script>
     import { todosStore, sortTodosByDeadline, expireTodo } from '$lib/todosStores';
+    import TodoCheckbox from '$lib/DailyTodosCard/TodoCheckbox.svelte';
+    import CallToAction from '$lib/utilities/CallToAction.svelte';
     import currentTime from '$lib/utilities/currentTimeStore';
     const lateLimit = 1000 * 60 * 60 * 24 // A day
     let nextTodo;
     let deadline;
+    let todoAvailable = true;
     todosStore.subscribe((todos) => {
         nextTodo = sortTodosByDeadline(todos.filter((todo) => !todo.today))[0];
+        if(nextTodo !== undefined) todoAvailable = true;
+        else return todoAvailable = false;
         deadline = new Intl.DateTimeFormat('default', {
           hour: 'numeric',
           year: 'numeric',
@@ -14,22 +19,36 @@
           minute: 'numeric',
         }).format(nextTodo.deadline);
     });
-    $: if(nextTodo.deadline <= $currentTime) expireTodo(nextTodo, false);
+    $: if(todoAvailable) if(nextTodo.deadline <= $currentTime) expireTodo(nextTodo, false);
 </script>
 
-<article>
-    <h2>Next long term goal</h2>
-    <p>{nextTodo.text}</p>
+<section aria-labelledby="heading">
+    <h2 id="heading">Next long term goal</h2>
+    <!-- svelte-ignore a11y-label-has-associated-control -->
+    {#if todoAvailable}
+    <label>
+        <TodoCheckbox todo={nextTodo} />
+        <p>{nextTodo.text}</p>
+    </label>
     <time class:late={nextTodo.deadline - lateLimit < $currentTime }>
         {deadline}
     </time>
-</article>
+    {:else}
+    <p>No long term goals added</p>
+    <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
+    {/if}
+</section>
 
 <style>
-    article {
+    section {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
     }
 </style>
