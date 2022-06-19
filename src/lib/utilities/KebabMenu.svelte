@@ -3,6 +3,7 @@
     import { deleteTodo } from '$lib/todosStores';
     import EditModal from '$lib/utilities/EditModal.svelte';
     export let todo;
+    export let black = false;
     let menu;
     let menuButton;
     let focusedMenuItem = 0;
@@ -64,7 +65,7 @@
 </script>
 
 <button on:click={handleMenuButtonClick} bind:this={menuButton} aria-label="actionmenu" aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" id="menu-button">
-    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class:black>
         <circle cx="8" cy="2.5" r=".75"/>
         <circle cx="8" cy="8" r=".75"/>
         <circle cx="8" cy="13.5" r=".75"/>
@@ -95,6 +96,10 @@
 
     svg {
         color: white;
+    }
+
+    .black {
+        color: black;
     }
 
     #menu {

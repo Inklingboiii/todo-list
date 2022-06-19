@@ -14,7 +14,7 @@
         background: linear-gradient(currentColor, currentColor);
         background-repeat: no-repeat;
         background-position: bottom left;
-        background-size: 0% 0%;
+        background-size: 0% 0.15em;
         transition: background-size 0.35s ease-in-out;
     }
 
