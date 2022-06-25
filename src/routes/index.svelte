@@ -6,22 +6,6 @@
     import Link from '$lib/utilities/Link.svelte';
     export let quote;
 </script>
-<script context="module">
-    // Fetch quote
-    // TODO: Fetch multiple quotes at once and cache them externally as described here: https://premium.zenquotes.io/zenquotes-documentation/#call-quotes
-    /** @type {import('@sveltejs/kit').Load} */
-
-   export async function load({fetch}) {
-    const result = await fetch('./quote.json');
-    const quote = await result.json();
-    
-        return {
-           props: {
-               quote
-           }
-        }
-   }
-</script>
 <svelte:head>
     <title>Generic to-do list</title>
 </svelte:head>
