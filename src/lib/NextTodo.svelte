@@ -23,8 +23,8 @@
     $: if(todoAvailable) if(nextTodo.deadline <= $currentTime) expireTodo(nextTodo, false);
 </script>
 
-<section aria-labelledby="heading">
-    <h2 id="heading">Next long term goal</h2>
+<section aria-labelledby="nexttodo-heading">
+    <h2 id="nexttodo-heading">Next long term goal</h2>
     <!-- svelte-ignore a11y-label-has-associated-control -->
     {#if todoAvailable}
         <div>

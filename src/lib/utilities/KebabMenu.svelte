@@ -2,6 +2,7 @@
     import { fade } from 'svelte/transition';
     import { deleteTodo } from '$lib/todosStores';
     import EditModal from '$lib/utilities/EditModal.svelte';
+    import { nanoid as uuid } from 'nanoid';
     export let todo;
     export let black = false;
     let menu;
@@ -9,6 +10,8 @@
     let focusedMenuItem = 0;
     let toggle = false;
     let isEditing = false;
+    // Generate unique id for multiple instances
+    const id = `menu-button-${uuid()}`;
     const actions = [{
         name: 'Delete',
         onclick: deleteTodo
@@ -64,7 +67,7 @@
     }
 </script>
 
-<button on:click={handleMenuButtonClick} bind:this={menuButton} aria-label="actionmenu" aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" id="menu-button">
+<button on:click={handleMenuButtonClick} bind:this={menuButton} aria-label="actionmenu" aria-haspopup="true" aria-expanded={toggle ? 'true' : null} aria-controls="menu" {id}>
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class:black>
         <circle cx="8" cy="2.5" r=".75"/>
         <circle cx="8" cy="8" r=".75"/>
@@ -74,7 +77,7 @@
 
 </button>
 {#if toggle}
-    <div id="menu" role="menu" aria-labelledby="menu-button" tabindex="-1" use:handleToggle transition:fade>
+    <div id="menu" role="menu" aria-labelledby={id} tabindex="-1" use:handleToggle transition:fade>
         {#each actions as action, i (i)}
             <button role="menuitem" on:click={() => action.onclick(todo)} tabindex="-1"  on:keydown={handleKeydown} on:focusout={handleFocusOut}>{action.name}</button>
         {/each}

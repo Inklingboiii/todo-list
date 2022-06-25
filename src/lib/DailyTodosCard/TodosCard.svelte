@@ -4,8 +4,8 @@
 	import DailyTodo from '$lib/DailyTodosCard/DailyTodo.svelte';
 	import CallToAction from '$lib/utilities/CallToAction.svelte';
 </script>
-<section aria-labelledby="heading">
-	<h2 id="heading">Daily todos</h2>
+<section aria-labelledby="todo-heading">
+	<h2 id="todo-heading">Daily todos</h2>
 	{#if dailyTodos.length}
 		<ul>
 			{#each dailyTodos as dailyTodo (dailyTodo.id)}
