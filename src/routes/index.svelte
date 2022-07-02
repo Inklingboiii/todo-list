@@ -6,6 +6,7 @@
     import Link from '$lib/utilities/Link.svelte';
     export let quote;
 </script>
+
 <svelte:head>
     <title>Generic to-do list</title>
 </svelte:head>
@@ -19,7 +20,7 @@
     <NextTodo />
 </main>
 <footer>
-    <p>Inspirational quotes provided by <Link href="https://zenquotes.io/"newTab={true}>ZenQuotes API</Link></p>
+    <p>Inspirational quotes provided by <Link href="https://zenquotes.io/" newTab={true}>ZenQuotes API</Link></p>
 </footer>
 
 

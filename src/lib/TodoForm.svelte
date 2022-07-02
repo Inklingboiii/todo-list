@@ -33,7 +33,7 @@
 			text,
 			today,
 			deadline: new Date(deadline).getTime(),
-			id: uuid()
+			id: crypto.randomUUID()
 		}
 		addTodo(todo);
 		goto('/');

@@ -16,8 +16,5 @@
     "eslint-plugin-svelte3": "^3.4.0",
     "svelte": "^3.48.0"
   },
-  "type": "module",
-  "dependencies": {
-    "nanoid": "^3.3.4"
-  }
+  "type": "module"
 }
