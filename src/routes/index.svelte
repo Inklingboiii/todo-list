@@ -4,16 +4,15 @@
     import TodosCard from '$lib/DailyTodosCard/TodosCard.svelte';
     import NextTodo from '$lib/NextTodo.svelte';
     import Link from '$lib/utilities/Link.svelte';
-    export let quote;
+    export let quotes;
 </script>
-
 <svelte:head>
     <title>Generic to-do list</title>
 </svelte:head>
 
 <header>
     <MainHeading>Generic to-do list</MainHeading>
-    <Quote quote={quote} />
+    <Quote quotes={quotes} />
 </header>
 <main>
     <TodosCard />

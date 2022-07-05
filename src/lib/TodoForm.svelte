@@ -1,7 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { addTodo } from '$lib/todosStores.ts';
-	import { nanoid as uuid } from 'nanoid';
 	import currentTime from '$lib/utilities/currentTimeStore';
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
 	import Button from '$lib/utilities/Button.svelte';
