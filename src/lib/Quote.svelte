@@ -1,8 +1,6 @@
 <script>
     export let quotes;
-
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    $: console.log(quote)
 </script>
 
 <figure>
