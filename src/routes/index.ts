@@ -5,9 +5,6 @@ const cache = {
 const timeout = 1000 * 60 * 60 * 5;
 export async function get() {
     if(cache.time + timeout < new Date().getTime() || cache.data !== null) return {
-        headers: {
-            'cache-control': 'public, max-age=' + timeout
-        },
         body: {
             quotes: cache.data
         }
@@ -21,9 +18,6 @@ export async function get() {
         
         cache.time = new Date().getTime();
         return {
-            headers: {
-                'cache-control': 'public, max-age=' + timeout
-            },
             body: {
                 quotes
             }

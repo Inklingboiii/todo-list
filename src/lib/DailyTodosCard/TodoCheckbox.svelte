@@ -5,7 +5,7 @@
     $: if(checked)  {
         expireTodo(todo, true);
         checked = false;
-        }
+    }
 </script>
 
 <input type="checkbox" bind:checked>
