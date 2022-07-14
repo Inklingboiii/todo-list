@@ -4,7 +4,8 @@
 	import currentTime from '$lib/utilities/currentTimeStore';
 	import FloatingInput from '$lib/utilities/FloatingInput.svelte';
 	import Button from '$lib/utilities/Button.svelte';
-	let today = true
+	let todoAdded = false;
+	let today = true;
 	let text;
 	let deadline;
 	$: min = formatDate(new Date($currentTime));
@@ -35,7 +36,9 @@
 			id: crypto.randomUUID()
 		}
 		addTodo(todo);
-		goto('/');
+		todoAdded = true;
+		setTimeout(() => goto('/'), 3000);
+		//goto('/');
 	}
 </script>
 
@@ -61,6 +64,9 @@
 
 	<Button>Save</Button>
 </form>
+{#if todoAdded}
+	<h2>Todo successfully added!</h2>
+{/if}
 
 <style>
 	form {

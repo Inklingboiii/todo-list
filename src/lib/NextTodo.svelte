@@ -12,7 +12,8 @@
     todosStore.subscribe((todos) => {
         // Only reassign value if changed, so animations get triggered correctly
         if(nextTodo === sortTodosByDeadline(todos.filter((todo) => !todo.today))[0]) return;
-        nextTodo = sortTodosByDeadline(todos.filter((todo) => !todo.today))[0];
+        // Copy by value, so check above works
+        nextTodo = {...sortTodosByDeadline(todos.filter((todo) => !todo.today))[0]};
         if(nextTodo !== undefined) todoAvailable = true;
         else return todoAvailable = false;
         deadline = new Intl.DateTimeFormat('default', {
