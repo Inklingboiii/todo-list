@@ -31,7 +31,7 @@
     <!-- svelte-ignore a11y-label-has-associated-control -->
     {#if todoAvailable}
         {#key nextTodo}
-            <div transition:fly={{x: 100}}>
+            <div class="todo-container" transition:fly={{x: 100}}>
                 <label>
                     <TodoCheckbox todo={nextTodo} />
                     <p>{nextTodo.text}</p>
@@ -43,8 +43,10 @@
             </time>
         {/key}
     {:else}
-        <p>No long term goals added</p>
-        <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
+        <div transition:fly={{x: 100}}>
+            <p>No long term goals added</p>
+            <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
+        </div>
     {/if}
 </section>
 
@@ -56,7 +58,7 @@
         text-align: center;
     }
 
-    section > div {
+    .todo-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
