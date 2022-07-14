@@ -9,3 +9,4 @@
 - [x]  add heading in add todos
 - [x]  add title to calendar page and various meta data
 - [x]  make it possible to complete long term goals
+- [] fix undefined bug at next todos
