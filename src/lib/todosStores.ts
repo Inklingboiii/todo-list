@@ -1,4 +1,5 @@
 import { writable, get } from 'svelte/store';
+import todoAlertStore from '$lib/todoAlertStore.ts';
 
 type Todo = {
 	text: string,
@@ -34,7 +35,12 @@ inactiveTodosStore.subscribe((inactiveTodos) => {
 });
 
 function addTodo(todo: Todo) {
-	todosStore.update((todos) => [...todos, todo])
+	todosStore.update((todos) => [...todos, todo]);
+	// Add alert
+	const alert = `Todo: "${todo.text}" added`;
+	todoAlertStore.update((alerts) => [...alerts, alert]);
+	// Remove alert after some time
+	setTimeout(() => todoAlertStore.update((alerts) => alerts.filter((alertInstance) => alertInstance !== alert)), 10000);
 }
 
 function expireTodo(todo: Todo, succeeded: boolean) {
