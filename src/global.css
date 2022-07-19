@@ -13,7 +13,8 @@ body {
 
 :root {
     /* Colors */ 
-    --color-primary: #dd505b;
+    --color-primary-light: #e1656f;
+    --color-primary-dark: #bc2530;
     --color-accent: #50ddd2;
     --color-gray: hsl(0, 0%, 50%, 0.75);
     --color-dark: hsl(0, 0%, 0%, 0.75);
@@ -45,8 +46,12 @@ time {
 }
 
 time.late {
-        color: var(--color-primary);
+        color: var(--color-primary-light);
         font-weight: bold;
+}
+
+time.late.dark {
+    color: var(--color-primary-dark);
 }
 
 #svelte {

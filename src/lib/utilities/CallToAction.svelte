@@ -11,9 +11,10 @@
     a {
         text-decoration: none;
         text-align: center;
+        display: inline-block;
         min-width: 10ch;
         min-height: 44px;
-        background-color: var(--color-primary);
+        background-color: var(--color-primary-light);
         color: black;
         padding: 1em;
         border-radius: 20% 10% / 10% 20%;

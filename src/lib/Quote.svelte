@@ -25,7 +25,7 @@
     blockquote::before,
     blockquote::after {
         font-size: 1em;
-        color: var(--color-primary);
+        color: var(--color-primary-dark);
         position: absolute;
         transform: scale(3);
         opacity: 0.8;

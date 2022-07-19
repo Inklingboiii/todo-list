@@ -70,6 +70,6 @@
     }
 
     .current-day {
-        background: var(--color-primary);
+        background: var(--color-primary-light);
     }
 </style>

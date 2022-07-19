@@ -35,7 +35,7 @@
         transform: scaleX(0%);
         transform-origin: 0%;
         transition: transform 0.5s ease-in-out;
-        background-color: var(--color-primary);
+        background-color: var(--color-primary-dark);
     }
 
     .animated:is(:focus, :hover)::before {

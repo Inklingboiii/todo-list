@@ -40,7 +40,7 @@
                 </label>
                 <KebabMenu todo={nextTodo} black/>
             </div>
-            <time class:late={nextTodo.deadline - lateLimit < $currentTime } transition:fly={{x: 100}}>
+            <time class:late={nextTodo.deadline - lateLimit < $currentTime } class="dark" transition:fly={{x: 100}}>
                 {deadline}
             </time>
         {/key}

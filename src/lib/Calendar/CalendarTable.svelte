@@ -142,6 +142,6 @@
     }
 
     #heading button:is(:focus, :hover) svg {
-        fill: var(--color-primary);
+        fill: var(--color-primary-light);
     }
 </style>
