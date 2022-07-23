@@ -20,6 +20,8 @@
     blockquote {
         position: relative;
         font-size: var(--font-500);
+        width: fit-content;
+        margin-inline: auto;
     }
 
     blockquote::before,
