@@ -15,10 +15,11 @@
         background-repeat: no-repeat;
         background-position: bottom left;
         background-size: 0% 0.15em;
-        transition: background-size 0.35s ease-in-out;
+        transition: font-weight 0.2s linear, background-size 0.35s ease-in-out;
     }
 
     a:is(:hover, :focus) {
         background-size: 100% 0.15em;
+        font-weight: 700;
     }
 </style>
