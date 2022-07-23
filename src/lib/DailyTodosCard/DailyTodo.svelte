@@ -6,7 +6,7 @@
     import TodoCheckbox from './TodoCheckbox.svelte';
 </script>
 
-<li transition:fly={{x: 100}}>
+<li transition:fly|local={{x: 100}}>
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label>
         <TodoCheckbox {todo} />

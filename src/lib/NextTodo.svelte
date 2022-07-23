@@ -33,14 +33,14 @@
     <!-- svelte-ignore a11y-label-has-associated-control -->
     {#if todoAvailable}
         {#key nextTodo}
-            <div class="todo-container" transition:fly={{x: 100}}>
+            <div class="todo-container" transition:fly|local={{x: 100}}>
                 <label>
                     <TodoCheckbox todo={nextTodo} />
                     <p>{nextTodo.text}</p>
                 </label>
                 <KebabMenu todo={nextTodo} black/>
             </div>
-            <time class:late={nextTodo.deadline - lateLimit < $currentTime } class="dark" transition:fly={{x: 100}}>
+            <time class:late={nextTodo.deadline - lateLimit < $currentTime } class="dark" transition:fly|local={{x: 100}}>
                 {deadline}
             </time>
         {/key}
