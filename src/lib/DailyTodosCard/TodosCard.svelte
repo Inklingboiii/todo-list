@@ -5,7 +5,7 @@
 	import CallToAction from '$lib/utilities/CallToAction.svelte';
 </script>
 <section aria-labelledby="todo-heading">
-	<h2 id="todo-heading">Daily todos</h2>
+	<h2 id="todo-heading">Daily to-dos</h2>
 	{#if dailyTodos.length}
 		<ul>
 			{#each dailyTodos as dailyTodo (dailyTodo.id)}
@@ -13,9 +13,9 @@
 			{/each}
 		</ul>
 	{:else}
-		<p>No todos added</p>
+		<p>No to-dos added</p>
 	{/if}
-	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} todos</CallToAction>
+	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} to-dos</CallToAction>
 </section>
 
 <style>

@@ -17,7 +17,7 @@
         <h3 id="heading">{day} {month} {year}</h3>
         <div class="todos">
             <div>
-                <h4>Daily todos</h4>
+                <h4>Daily to-dos</h4>
                 <CalendarCellListing todos={dailyTodos} />
             </div>
             <div>
@@ -27,7 +27,7 @@
         </div>
         
         <div class="button-group">
-            <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
+            <CallToAction id="first" href="/add-todos">Add to-dos</CallToAction>
             <Button minimal type="button" onClick={closeModal} id="last">Close</Button>
         </div>
     </article>

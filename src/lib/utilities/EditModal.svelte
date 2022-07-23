@@ -14,7 +14,7 @@
 
 </script>
 <Modal closeModal={closeEditModal}>
-    <h3 id="heading" >Edit Todo</h3>
+    <h3 id="heading" >Edit to-do</h3>
     <form on:submit|preventDefault={handleSubmit}>
         <input bind:value={inputValue} id="first">
         <div>

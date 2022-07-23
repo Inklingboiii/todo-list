@@ -4,10 +4,10 @@
 </script>
 
 <svelte:head>
-	<title>Add todo</title>
+	<title>Add to-do</title>
 </svelte:head>
 <header>
-    <MainHeading>Add todo</MainHeading>
+    <MainHeading>Add to-do</MainHeading>
 </header>
 <main>
 	<TodoForm />

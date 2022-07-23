@@ -3,7 +3,7 @@
 </script>
 <nav>
     <Link href="/">Home</Link>
-    <Link href="/add-todos">Add Todos</Link>
+    <Link href="/add-todos">Add to-dos</Link>
     <Link href="/calendar">Calendar</Link>
 </nav>
 
