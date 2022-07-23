@@ -1,8 +1,9 @@
 <script>
+	import { fly } from 'svelte/transition';
 	import { todosStore } from '$lib/todosStores';
-	$: dailyTodos = $todosStore.filter((todo) => todo.today);
 	import DailyTodo from '$lib/DailyTodosCard/DailyTodo.svelte';
 	import CallToAction from '$lib/utilities/CallToAction.svelte';
+	$: dailyTodos = $todosStore.filter((todo) => todo.today);
 </script>
 <section aria-labelledby="todo-heading">
 	<h2 id="todo-heading">Daily to-dos</h2>
@@ -13,7 +14,7 @@
 			{/each}
 		</ul>
 	{:else}
-		<p>No to-dos added</p>
+		<p transition:fly|local={{x: 100}}>No to-dos added</p>
 	{/if}
 	<CallToAction href="/add-todos">Add {dailyTodos.length ? 'more' : ''} to-dos</CallToAction>
 </section>

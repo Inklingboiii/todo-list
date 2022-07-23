@@ -8,11 +8,12 @@
     const lateLimit = 1000 * 60 * 60 * 24 // A day
     let nextTodo;
     let deadline;
-    let todoAvailable = true;
+    // Starting value
+    let todoAvailable = $todosStore.filter((todo) => !todo.today).length;
     todosStore.subscribe((todos) => {
-        let newTodo = sortTodosByDeadline(todos.filter((todo) => !todo.today))[0]
+        let newTodo = sortTodosByDeadline(todos.filter((todo) => !todo.today))[0];
         // Only reassign value if changed, so animations get triggered correctly
-        // Checl by value and not reference
+        // Check by value and not reference
         if(JSON.stringify(nextTodo) === JSON.stringify(newTodo)) return;
         nextTodo = newTodo;
         if(nextTodo !== undefined) todoAvailable = true;
@@ -45,7 +46,7 @@
             </time>
         {/key}
     {:else}
-        <div transition:fly={{x: 100}}>
+        <div transition:fly|local={{x: 100}}>
             <p>No long term goals added</p>
             <CallToAction id="first" href="/add-todos">Add todos</CallToAction>
         </div>
