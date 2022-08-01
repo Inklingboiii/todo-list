@@ -51,5 +51,4 @@
     :global(footer > p > a) {
         color: var(--color-accent);
     }
-
 </style>
