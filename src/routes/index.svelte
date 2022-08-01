@@ -22,7 +22,6 @@
     <p>Inspirational quotes provided by <Link href="https://zenquotes.io/" newTab={true}>ZenQuotes API</Link></p>
 </footer>
 
-
 <style>
     main {
         display: flex;
