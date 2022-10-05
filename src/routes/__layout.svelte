@@ -5,6 +5,7 @@
     import '../global.css';
     import todoAlertStore from '$lib/todoAlertStore';
 </script>
+
 <Nav />
 <ul class="alerts-container">
     {#each $todoAlertStore as alert}

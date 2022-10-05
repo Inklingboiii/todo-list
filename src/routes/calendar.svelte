@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Calendar</title>
+    <title>Calendar</title>
 </svelte:head>
 <header>
     <MainHeading>Calendar</MainHeading>

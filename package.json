@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev -o -p 42069",
+    "host": "svelte-kit dev -o -p 42069 --host",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview -o",

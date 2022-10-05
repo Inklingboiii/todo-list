@@ -7,7 +7,7 @@
 	<title>Add to-do</title>
 </svelte:head>
 <header>
-    <MainHeading>Add to-do</MainHeading>
+	<MainHeading>Add to-do</MainHeading>
 </header>
 <main>
 	<TodoForm />
