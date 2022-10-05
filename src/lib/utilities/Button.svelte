@@ -24,6 +24,7 @@
         border-radius: 1em;
         padding: 1em 2.5em;
         position: relative;
+        overflow: hidden;
     }
 
     .animated::before {
